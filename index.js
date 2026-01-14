@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
 
-// const db = require("./config/db.js");
+const db = require("./config/db.js");
 const Route = require("./routes/router.js");
 
 app.use("/",Route);
