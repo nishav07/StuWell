@@ -1,10 +1,10 @@
 const { json } = require('express');
 
-function index(req,res){
-    res.render("index.ejs");
+function auth(req,res){
+    res.render("auth.ejs");
 }
 
 
 module.exports = {
-    index
+    auth
 }

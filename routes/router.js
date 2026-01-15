@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const authCall = require("../controllers/auth")
+const authCall = require("../controllers/auth");
+const userCall = require("../controllers/main")
 
 
 module.exports = router;
 
-router.get("/",authCall.index)
+router.get("/",userCall.index);
+router.get("/auth",authCall.auth);
