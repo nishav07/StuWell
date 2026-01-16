@@ -21,6 +21,19 @@ app.set("view engine","ejs");
 const db = require("./config/db.js");
 const Route = require("./routes/router.js");
 
+
+
+const sessionConfig = require("./config/session");
+app.use(sessionConfig);
+app.use(flash());
+
+const middleware = require("./middlewares/middleware.js")
+
+app.use(middleware.user);
+app.use(middleware.flash);
+app.use(middleware.renew);
+
+
 app.use("/",Route);
 
 app.listen(port,() => {
