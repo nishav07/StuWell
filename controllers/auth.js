@@ -47,10 +47,6 @@ async function signup (req,res){
 
 async function login (req,res){
     const {email,password} = req.body;
-    // console.log("login wala data:",{
-    //     email,
-    //     password
-    // })
 
      const users = await User.findOne({email:email});
 
@@ -61,11 +57,9 @@ async function login (req,res){
      }
 
    
-    // console.log("login wala data",users);
     const hashPass = users.password;
     const isTrue = await middleware.verify(password,hashPass);
 
-    // console.log(`data of pass`,hashPass,isTrue,);
 
     if(users && isTrue){
         req.session.user = {

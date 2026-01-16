@@ -32,7 +32,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         enum:['School', 'High School', 'College'],
         default: null
-    }
+    },
+    isProfileOk: {
+        type: Boolean,
+        default: false
+}
+
     
 })
 
