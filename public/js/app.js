@@ -55,7 +55,7 @@ document.querySelectorAll("a[data-page]").forEach(link => {
 
 
 document.addEventListener("DOMContentLoaded" , () => {
-  loadPage("docs");
+  loadPage("home");
 });
 
 

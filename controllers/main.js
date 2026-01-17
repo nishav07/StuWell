@@ -11,8 +11,20 @@ async function dashboard(req,res){
     
 }
 
+async function components(req,res){
+    const page = req.params.page;
+    const userID = req.session.user.id;
+    const user = await User.findById(userID)
+  
+  
+    res.render(`components/${page}`,{
+      user:user
+    })
+}
+
 
 module.exports = {
     index,
-    dashboard
+    dashboard,
+    components
 }
