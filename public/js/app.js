@@ -19,14 +19,14 @@ navItems.forEach(item => {
 
     navItems.forEach(i => {
       i.classList.remove(
-        "text-teal-400",
+        "text-amber-400",
         "scale-110",
         "-translate-y-1"
       );
     });
 
     item.classList.add(
-      "text-teal-400",
+      "text-amber-400",
       "scale-110",
       "-translate-y-1"
     );
