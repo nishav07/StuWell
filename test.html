@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tailwind Multi-Step Onboarding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 min-h-screen flex items-center justify-center text-white px-4">
+
+  <!-- Modal -->
+  <div class="bg-slate-950 w-full max-w-sm sm:max-w-md rounded-2xl p-6 shadow-[0_-8px_20px_rgba(0,0,0,0.4)]">
+
+    <!-- Progress -->
+    <div class="w-full h-2 bg-slate-800 rounded-full mb-6 overflow-hidden">
+      <div id="progress" class="h-full bg-sky-400 transition-all duration-300"></div>
+    </div>
+
+    <!-- Steps -->
+    <div id="steps" class="relative overflow-hidden h-[200px]">
+
+      <!-- STEP 1 -->
+      <div class="step absolute inset-0 transition-all duration-300">
+        <h2 class="text-xl font-semibold mb-3">What’s your name?</h2>
+        <input id="name" class="w-full p-3 rounded-lg text-black mb-4" placeholder="Your name">
+        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
+          Next
+        </button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
+        <h2 class="text-xl font-semibold mb-3">Your age?</h2>
+        <input id="age" type="number" class="w-full p-3 rounded-lg text-black mb-4">
+        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
+          Next
+        </button>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
+        <h2 class="text-xl font-semibold mb-3">Gender?</h2>
+        <input id="gender" class="w-full p-3 rounded-lg text-black mb-4">
+        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
+          Next
+        </button>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
+        <h2 class="text-xl font-semibold mb-3">Weight (kg)?</h2>
+        <input id="weight" class="w-full p-3 rounded-lg text-black mb-4">
+        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
+          Next
+        </button>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
+        <h2 class="text-xl font-semibold mb-3">Class?</h2>
+        <input id="class" class="w-full p-3 rounded-lg text-black mb-4">
+        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
+          Next
+        </button>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
+        <h2 class="text-xl font-semibold mb-3">Medical condition?</h2>
+        <input id="medical" class="w-full p-3 rounded-lg text-black mb-4">
+        <button onclick="submitData()" class="w-full bg-green-400 text-black font-bold py-2 rounded-lg">
+          Submit
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  var current = 0;
+  var steps = document.querySelectorAll(".step");
+  var progress = document.getElementById("progress");
+
+  function updateProgress() {
+    progress.style.width = ((current + 1) / steps.length) * 100 + "%";
+  }
+
+  function nextStep() {
+    var currentStep = steps[current];
+    var input = currentStep.querySelector("input");
+
+    if (!input || input.value.trim() === "") {
+      alert("input bhar bhai 😤");
+      return;
+    }
+
+    currentStep.classList.add("-translate-x-full", "opacity-0");
+
+    if (steps[current + 1]) {
+      steps[current + 1].classList.remove("translate-x-full", "opacity-0");
+      current++;
+      updateProgress();
+    }
+  }
+
+  function backStep() {
+    var currentStep = steps[current];
+    currentStep.classList.add("translate-x-full", "opacity-0");
+
+    if (steps[current - 1]) {
+      steps[current - 1].classList.remove("-translate-x-full", "opacity-0");
+      current--;
+      updateProgress();
+    }
+  }
+
+  function submitData() {
+    var data = {
+      name: document.getElementById("name").value,
+      age: document.getElementById("age").value,
+      gender: document.getElementById("gender").value,
+      weight: document.getElementById("weight").value,
+      class: document.getElementById("class").value,
+      medical: document.getElementById("medical").value
+    };
+
+    console.log("🔥 Onboarding Data:", data);
+    alert("Check console");
+  }
+
+  updateProgress();
+</script>
+
+
+</body>
+</html>
