@@ -15,4 +15,5 @@ router.post("/login",authCall.login);
 router.get("/dashboard",isLoggedIn,userCall.dashboard);
 router.post("/logout",isLoggedIn,authCall.logout);
 router.get("/components/:page",isLoggedIn,userCall.components);
+router.patch("/update",isLoggedIn,userCall.update);
 

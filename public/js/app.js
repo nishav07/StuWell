@@ -72,6 +72,39 @@ function loadPage(page) {
 
 //-------------------------------------------------- modal verification page----------------------------------------------------------------------------
 
+function showToast(message, type = "success", time = 2000) {
+  const toast = document.getElementById("toast");
+  const msg = document.getElementById("toast-msg");
+
+  msg.innerText = message;
+
+  // reset
+  toast.classList.remove("hidden", "opacity-100", "-translate-y-1/2");
+  toast.classList.add("opacity-0", "-translate-y-20");
+
+  // bg color
+  toast.classList.remove("bg-green-600", "bg-red-600");
+  toast.classList.add(type === "success" ? "bg-teal-600" : "bg-amber-600");
+
+  // force repaint
+  toast.offsetHeight;
+
+  // show
+  toast.classList.remove("opacity-0", "-translate-y-20");
+  toast.classList.add("opacity-100", "-translate-y-1/2");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0", "-translate-y-20");
+
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 500);
+  }, time);
+}
+
+
+
   let currentStep = 0;
   const steps = document.querySelectorAll("#steps .step");
   const progress = document.getElementById("progress");
@@ -97,24 +130,37 @@ function loadPage(page) {
       ((currentStep + 1) / steps.length) * 100 + "%";
   }
 
-  function nextStep() {
-    const el = steps[currentStep].querySelector("input","select");
-     if (!el) {
-    return alert("No input/select found in this step 😅"); // debug
+function nextStep() {
+  const stepEl = steps[currentStep];
+  
+  if (!stepEl) {
+    return console.error("Step element not found:", currentStep);
   }
-    const val = el.value;
-    if(!val){
-      return alert("input bhar na bhaiiiiii");
-    }
-    if (currentStep < steps.length - 1) {
-      currentStep++;
-      updateUI();
-    }
+
+  const el = stepEl.querySelector("input, select");
+
+  if (!el) {
+    return console.error("No input or select found in step", currentStep);
   }
+
+  const val = el.value;
+
+  if (!val) {
+    showToast("Input can't be empty",'err');
+    return
+  }
+
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    updateUI();
+  }
+}
+
 
   function backStep() {
     if (currentStep > 0) {
       currentStep--;
+       showToast("Input can't be empty");
       updateUI();
     }
   }
@@ -123,7 +169,7 @@ function loadPage(page) {
     document.getElementById("profile-modal-overlay").remove();
   }
 
-  function submitData() {
+  async function submitData() {
     const data = {
       age: document.getElementById("dob").value,
       gender: document.getElementById("gender").value,
@@ -132,9 +178,36 @@ function loadPage(page) {
 
     };
 
-    console.log("Profile Data:", data);
-    alert("Profile saved successfully ✅");
+    
+showLoader();
+
+const res =  await fetch("/update", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        DOB:data.age,
+        gender:data.gender,
+        weight:data.weight,
+        academic:data.class
+      })
+    });
+
+     console.log("Profile Data:", data);
+   
     closeProfileModal();
+
+    if(res.status === 200){
+      hideLoader();
+      showToast("data submitted");
+      
+      setTimeout(() => {
+      window.location.href = "/dashboard";
+      },500);
+    }
+
+   
+    
   }
 
   updateUI();
+
