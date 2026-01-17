@@ -11,4 +11,5 @@ router.get("/",userCall.index);
 router.get("/auth",authCall.auth);
 router.post("/signup",authCall.signup);
 router.post("/login",authCall.login);
-router.get("/dashboard",isLoggedIn,userCall.dashboard)
+router.get("/dashboard",isLoggedIn,userCall.dashboard);
+router.post("/logout",isLoggedIn,authCall.logout);

@@ -32,3 +32,39 @@ navItems.forEach(item => {
     );
   });
 });
+
+
+const profileBtn = document.getElementById("profile");
+const logoutBtn = document.getElementById("logout-section");
+
+profileBtn.addEventListener("click", () => {
+  logoutBtn.classList.toggle("hidden");
+})
+
+
+//--------------------------- single page application code --------------------------------------------------------------------------
+
+document.querySelectorAll("a[data-page]").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const page = e.currentTarget.getAttribute("data-page");
+    loadPage(page);
+  });
+});
+
+
+
+document.addEventListener("DOMContentLoaded" , () => {
+  loadPage("docs");
+});
+
+
+function loadPage(page) {
+  fetch(`/components/${page}`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("content").innerHTML = html;
+    //   initPage(page);
+    });
+}
+

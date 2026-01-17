@@ -77,20 +77,20 @@ async function login (req,res){
     
 }
 
-// async function logout(req,res){
-//     try {
-//     const userid = req.session.user.id;
-//     // console.log("logout wala userID",userid);
-//     req.flash("success","logged out succefully");
-//     req.session.destroy(() => {
-//     res.clearCookie("sid"); 
-//     res.redirect("/");
-//     });
-//     } catch (error) {
-//         console.log(error)
-//     }
+async function logout(req,res){
+    try {
+    const userid = req.session.user.id;
+    // console.log("logout wala userID",userid);
+    req.flash("success","logged out succefully");
+    req.session.destroy(() => {
+    res.clearCookie("sid"); 
+    res.redirect("/");
+    });
+    } catch (error) {
+        console.log(error)
+    }
 
-// }
+}
 
 
 
@@ -98,6 +98,6 @@ module.exports = {
     auth,
     signup,
     login,
-    // logout
+    logout
 }
 
