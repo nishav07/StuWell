@@ -1,141 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Tailwind Multi-Step Onboarding</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/public/css/style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<body>
+    <div id="page-wrapper" class="">
 
-<body class="bg-slate-900 min-h-screen flex items-center justify-center text-white px-4">
+       <header id="nav-section" class="bg-white shadow-lg">
+            <div id="nav-container" class="flex px-6 items-center justify-between md:px-20 lg:px-30 py-2 md:py-4">
+                 <div id="logo" class="text-teal-400 text-2xl"><span class="text-teal-700">Stu</span>Well</div>
+                <nav id="profile" class="p-2 px-6 text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300 flex items-center justify-center">
+                   <i class="fa-solid fa-user"></i>
+                </nav>
+            </div>
+        </header>
 
-  <!-- Modal -->
-  <div class="bg-slate-950 w-full max-w-sm sm:max-w-md rounded-2xl p-6 shadow-[0_-8px_20px_rgba(0,0,0,0.4)]">
+        <div id="main" class=" md:flex md:px-10 lg:px-15 md:bg-emeald-200 md:flex md:gap-10">
 
-    <!-- Progress -->
-    <div class="w-full h-2 bg-slate-800 rounded-full mb-6 overflow-hidden">
-      <div id="progress" class="h-full bg-sky-400 transition-all duration-300"></div>
-    </div>
+            <div id="side-nav-section" class="hidden md:block md:flex-1 md:min-h-166 rou  md:py-8 ">
+                <div id="side-nav-container" class="hidden md:block  md:h-full md:px-4 md:flex md:flex-col md:gap-4 bg-teal-500 text-white rounded-lg ">
+                    
+                    <div class="pt-4 px-4  w-full text-3xl flex items-center ">
+                        <a href="" data-page="home" class="flex justify-center">
+                          <i class="fa-solid fa-house"></i>
+                          <p class="text-2xl px-2 cursor-pointer">Home</p>
+                        </a>
+                    </div>
 
-    <!-- Steps -->
-    <div id="steps" class="relative overflow-hidden h-[200px]">
+                     <div class="pt-4 px-4  w-full text-3xl flex items-center ">
+                        <a href="" data-page="summary" class="flex justify-center">
+                          <i class="fa-solid fa-list-check"></i>
+                          <p class="text-2xl px-2 cursor-pointer">Summary</p>
+                        </a>
+                    </div>
 
-      <!-- STEP 1 -->
-      <div class="step absolute inset-0 transition-all duration-300">
-        <h2 class="text-xl font-semibold mb-3">What’s your name?</h2>
-        <input id="name" class="w-full p-3 rounded-lg text-black mb-4" placeholder="Your name">
-        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
-          Next
-        </button>
-      </div>
+                     <div class="pt-4 px-4  w-full text-3xl flex items-center ">
+                        <a href="" data-page="insight" class="flex justify-center">
+                          <i class="fa-solid fa-chart-column"></i>
+                          <p class="text-2xl px-2 cursor-pointer">Insights</p>
+                        </a>
+                    </div>
 
-      <!-- STEP 2 -->
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
-        <h2 class="text-xl font-semibold mb-3">Your age?</h2>
-        <input id="age" type="number" class="w-full p-3 rounded-lg text-black mb-4">
-        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
-          Next
-        </button>
-      </div>
-
-      <!-- STEP 3 -->
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
-        <h2 class="text-xl font-semibold mb-3">Gender?</h2>
-        <input id="gender" class="w-full p-3 rounded-lg text-black mb-4">
-        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
-          Next
-        </button>
-      </div>
-
-      <!-- STEP 4 -->
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
-        <h2 class="text-xl font-semibold mb-3">Weight (kg)?</h2>
-        <input id="weight" class="w-full p-3 rounded-lg text-black mb-4">
-        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
-          Next
-        </button>
-      </div>
-
-      <!-- STEP 5 -->
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
-        <h2 class="text-xl font-semibold mb-3">Class?</h2>
-        <input id="class" class="w-full p-3 rounded-lg text-black mb-4">
-        <button onclick="nextStep()" class="w-full bg-sky-400 text-black font-bold py-2 rounded-lg">
-          Next
-        </button>
-      </div>
-
-      <!-- STEP 6 -->
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-sky-400">← Back</button>
-        <h2 class="text-xl font-semibold mb-3">Medical condition?</h2>
-        <input id="medical" class="w-full p-3 rounded-lg text-black mb-4">
-        <button onclick="submitData()" class="w-full bg-green-400 text-black font-bold py-2 rounded-lg">
-          Submit
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-<script>
-  var current = 0;
-  var steps = document.querySelectorAll(".step");
-  var progress = document.getElementById("progress");
-
-  function updateProgress() {
-    progress.style.width = ((current + 1) / steps.length) * 100 + "%";
-  }
-
-  function nextStep() {
-    var currentStep = steps[current];
-    var input = currentStep.querySelector("input");
-
-    if (!input || input.value.trim() === "") {
-      alert("input bhar bhai 😤");
-      return;
-    }
-
-    currentStep.classList.add("-translate-x-full", "opacity-0");
-
-    if (steps[current + 1]) {
-      steps[current + 1].classList.remove("translate-x-full", "opacity-0");
-      current++;
-      updateProgress();
-    }
-  }
-
-  function backStep() {
-    var currentStep = steps[current];
-    currentStep.classList.add("translate-x-full", "opacity-0");
-
-    if (steps[current - 1]) {
-      steps[current - 1].classList.remove("-translate-x-full", "opacity-0");
-      current--;
-      updateProgress();
-    }
-  }
-
-  function submitData() {
-    var data = {
-      name: document.getElementById("name").value,
-      age: document.getElementById("age").value,
-      gender: document.getElementById("gender").value,
-      weight: document.getElementById("weight").value,
-      class: document.getElementById("class").value,
-      medical: document.getElementById("medical").value
-    };
-
-    console.log("🔥 Onboarding Data:", data);
-    alert("Check console");
-  }
-
-  updateProgress();
-</script>
+                     <div class="pt-4 px-4  w-full text-3xl flex items-center ">
+                        <a href="" data-page="setting" class="flex justify-center">
+                          <i class="fa-solid fa-gear"></i>
+                          <p class="text-2xl px-2 cursor-pointer">Setting</p>
+                        </a>
+                    </div>
 
 
+                </div>
+            </div>
+
+            
+            
+            <main id="content" class="pb-30 md:flex-6 overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:min-h-166 shadow-2xl  md:py-8">
+
+              <div id="hero-section" class="my-4 mx-4">
+                <div id="hero-container" class="bg-gradient-to-r from-teal-400 via-teal-400/60 to-teal-400/20 py-6 px-2 md:px-6 flex flex-col items-center justify-center gap-10 md:gap-16 rounded-2xl">
+               <div class=" w-full">
+                   <h1 class="text-3xl md:text-5xl lg:text-6xl text-black font-bold text-left">How was Your yesterday?</h1>
+                  <p class="text-2xl md:text-3xl text-black font-normal text-left">it takes less a minute.</p>
+               </div>
+                  <button  class="p-2 px-6  text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300">Starts Daily Check-in</button>
+                </div>
+
+
+                <div id="snap-shot-section" class="px-5 py-5">
+                <h1 class="text-3xl font-normal">Today's Snapshot</h1>
+
+                <div id="snap-shot-container" class="py-4">
+
+                 <div id="snap-card" class=" px-4">
+                   <div id="card" class="min-h-28 w-28 bg-teal-500"></div>
+                 </div>
+                </div>
+
+              </div>
+
+              </div>
+
+              
+
+
+            </main>
+
+
+
+        </div>
+
+        <footer id="bottom-nav-section" class="fixed shadow-[0_-6px_12px_rgba(0,0,0,0.18)] bottom-0 left-0 w-full h-25  md:hidden">
+            <div id="bottom-nav-container" class="h-full px-10 py-2 flex items-center justify-between">
+
+                <div class="nav-item text-3xl text-teal-400 flex flex-col items-center justify-center gap-1">
+                    <a href="" data-page="home"><i class="fa-solid fa-house"></i></a>
+                    <p class="text-sm">Home</p>
+                </div>
+
+                 <div class="nav-item text-3xl text-teal-400 flex flex-col items-center justify-center gap-1">
+                    <a href="" data-page="home"><i class="fa-solid fa-list-check"></i></a>
+                    <p class="text-sm">Summary</p>
+                </div>
+
+                 <div class="nav-item text-3xl text-teal-400 flex flex-col items-center justify-center gap-1">
+                    <a href="" data-page="home"><i class="fa-solid fa-chart-column"></i></a>
+                    <p class="text-sm">Insights</p>
+                </div>
+
+                 <div class="nav-item text-3xl text-teal-400 flex flex-col items-center justify-center gap-1">
+                    <a href="" data-page="home"><i class="fa-solid fa-gear"></i></a>
+                    <p class="text-sm">profile</p>
+                </div>
+
+             
+            </div>
+        </footer>
+
+
+      
+
+  
+
+
+
+</div>
+
+    <script src="/js/app.js"></script>
 </body>
 </html>
