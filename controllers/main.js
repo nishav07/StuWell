@@ -7,7 +7,7 @@ function index(req,res){
 async function dashboard(req,res){
     const userID = req.session.user.id;
     const user = await User.findById(userID)
-    res.render("dashboard.ejs",{showProfileModal: !user.isProfileComplete})
+    res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk})
     
 }
 
