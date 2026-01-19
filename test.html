@@ -137,6 +137,106 @@
 
       
 
+        <div id="profile-modal-overlay"
+  class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur
+         flex items-center justify-center">
+
+
+  <div
+    class="bg-white text-slate-800
+           w-[92%] max-w-sm sm:max-w-md
+           rounded-2xl p-6
+           shadow-xl relative">
+
+  
+    <button
+      onclick="closeProfileModal()"
+      class="absolute top-10 right-7
+             text-slate-400 hover:text-slate-700
+             text-lg font-bold">
+      ✕
+    </button>
+
+ 
+    <div class="w-full h-2 bg-slate-200 rounded-full mb-6 overflow-hidden">
+      <div id="progress"
+        class="h-full bg-teal-500 transition-all duration-300">
+      </div>
+    </div>
+
+  
+    <div id="steps" class="relative overflow-hidden h-[220px] p-4">
+
+  
+     
+
+     
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3">Date of Birth</h2>
+        <input id="dob" type="date"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+                 text-white font-semibold py-2 rounded-lg transition">
+          Next
+        </button>
+      </div>
+
+      
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3">Gender</h2>
+        <select id="gender"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="prefer-not-to-say">Prefer not to say</option>
+        </select>
+        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+                 text-white font-semibold py-2 rounded-lg transition">
+          Next
+        </button>
+      </div>
+
+    
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3 p-2">Weight (kg)</h2>
+        <input id="weight" type="number" max="300"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+                 text-white font-semibold py-2 rounded-lg transition">
+          Next
+        </button>
+      </div>
+
+      
+      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3">Academic level</h2>
+        <select id="userClass"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+          <option value="">Select level</option>
+          <option value="School">School</option>
+          <option value="High School">High School</option>
+          <option value="College">College</option>
+        </select>
+         <button onclick="submitData()"
+          class="w-full bg-amber-400 hover:bg-amber-500
+                 text-slate-900 font-semibold py-2 rounded-lg transition">
+          Submit
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
   
 
 
