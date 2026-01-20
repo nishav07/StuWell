@@ -199,7 +199,7 @@
       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
         <h2 class="text-lg font-semibold mb-3">What you contain most?</h2>
-        <select id="junkFood"
+        <select id="foodType"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
           <option value="balanced">balanced</option>
@@ -207,7 +207,7 @@
            <option value="protein">protein</option>
           <option value="fats">fats</option>
         </select>
-        
+
         <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
@@ -227,18 +227,69 @@
         </button>
       </div>
 
+
+       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3">Any Symptoms?</h2>
+        <select id="symptoms"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+          <option value="none">none</option>
+          <option value="headache">headache</option>
+           <option value="fatigue">fatigue</option>
+          <option value="stress">stress</option>
+             <option value="anxiety">anxiety</option>
+           <option value="stomach_discomfort">stomach Discomfort</option>
+          <option value="body_pain">body Pain</option>
+           <option value="low_focus">low_focus</option>
+        </select>
+
+        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+                 text-white font-semibold py-2 rounded-lg transition">
+          Next
+        </button>
+      </div>
+
+
+       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3 p-2">sleep Hour</h2>
+        <input id="sleepHr" type="number" max="300"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+                 text-white font-semibold py-2 rounded-lg transition">
+          Next
+        </button>
+      </div>
+
+
+       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+        <h2 class="text-lg font-semibold mb-3 p-2">Screem Time</h2>
+        <input id="screentime" type="number" max="300"
+          class="w-full p-3 rounded-lg border border-slate-300
+                 focus:ring-2 focus:ring-teal-400 outline-none mb-4">
+        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+                 text-white font-semibold py-2 rounded-lg transition">
+          Next
+        </button>
+      </div>
+
       
       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
-        <h2 class="text-lg font-semibold mb-3">Academic level</h2>
-        <select id="userClass"
+        <h2 class="text-lg font-semibold mb-3">Mood</h2>
+        <select id="mood"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
-          <option value="">Select level</option>
-          <option value="School">School</option>
-          <option value="High School">High School</option>
-          <option value="College">College</option>
+          <option value="neutral">neutral</option>
+          <option value="veryBad">veryBad</option>
+          <option value="Bad">Bad</option>
+          <option value="Good">Good</option>
+          <option value="veryGood">Very Good</option>
         </select>
+
          <button onclick="submitData()"
           class="w-full bg-amber-400 hover:bg-amber-500
                  text-slate-900 font-semibold py-2 rounded-lg transition">
@@ -324,39 +375,42 @@ function backStep() {
 
   async function submitData() {
     const data = {
-      age: document.getElementById("dob").value,
-      gender: document.getElementById("gender").value,
-      weight: document.getElementById("weight").value,
-      class: document.getElementById("userClass").value,
-
+      water: document.getElementById("water").value,
+      junkFood: document.getElementById("junkFood").value,
+      foodTye: document.getElementById("foodType").value,
+      studyHr: document.getElementById("studyHr").value,
+      mood: document.getElementById("mood").value,
+      symptoms: document.getElementById("symptoms").value,
+      sleepHr: document.getElementById("sleepHr").value,
+      screenTime: document.getElementById("screentime").value,
     };
 
     
 showLoader();
 
-const res =  await fetch("/update", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        DOB:data.age,
-        gender:data.gender,
-        weight:data.weight,
-        academic:data.class
-      })
-    });
+// const res =  await fetch("/update", {
+//       method: "PATCH",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ 
+//         DOB:data.age,
+//         gender:data.gender,
+//         weight:data.weight,
+//         academic:data.class
+//       })
+//     });
 
-     console.log("Profile Data:", data);
+    //  console.log("Profile Data:", data);
    
-    closeProfileModal();
+    // closeProfileModal();
 
-    if(res.status === 200){
-      hideLoader();
-      showToast("data submitted");
+    // if(res.status === 200){
+    //   hideLoader();
+    //   showToast("data submitted");
       
-      setTimeout(() => {
-      window.location.href = "/dashboard";
-      },500);
-    }
+    //   setTimeout(() => {
+    //   window.location.href = "/dashboard";
+    //   },500);
+    // }
 
    
     
