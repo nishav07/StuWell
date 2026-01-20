@@ -42,10 +42,20 @@ const inputSchema = new mongoose.Schema({
         required:true
     },
     date: {
-        type:Date,
-        default:Date.now
-    }
-})
+    type: String, // "2026-01-20"
+    required: true
+    },
+    status: {
+    type: String,
+    enum: ["submitted", "missed"],
+    default: "missed"
+}
+
+
+});
+
+inputSchema.index({ userId: 1, date: 1 }, { unique: true });
+
 
 const daily = mongoose.model("daily", inputSchema);
 
