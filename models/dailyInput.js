@@ -42,7 +42,7 @@ const inputSchema = new mongoose.Schema({
         required:true
     },
     date: {
-    type: String, // "2026-01-20"
+    type: String,
     required: true
     },
     status: {

@@ -143,7 +143,7 @@
 
 
   <div
-    class="bg-white text-slate-800
+    class="bg-white text-amber-800
            w-[92%] max-w-sm sm:max-w-md
            rounded-2xl p-6
            shadow-xl relative">
@@ -167,10 +167,6 @@
   
     <div id="steps" class="relative overflow-hidden h-[220px] p-4">
 
-  
-     
-
-     
       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Date of Birth</h2>
@@ -243,6 +239,115 @@
 
 </div>
 
-    <script src="/js/app.js"></script>
+    <script>
+      
+  let currentStep = 0;
+  const steps = document.querySelectorAll("#steps .step");
+  const progress = document.getElementById("progress");
+
+  function updateUI() {
+    steps.forEach((step, index) => {
+      step.classList.remove(
+        "translate-x-full",
+        "-translate-x-full",
+        "opacity-0"
+      );
+
+      if (index === currentStep) {
+        step.classList.add("translate-x-0");
+      } else if (index < currentStep) {
+        step.classList.add("-translate-x-full", "opacity-0");
+      } else {
+        step.classList.add("translate-x-full", "opacity-0");
+      }
+    });
+
+    progress.style.width =
+      ((currentStep + 1) / steps.length) * 100 + "%";
+  }
+
+function nextStep() {
+  const stepEl = steps[currentStep];
+  
+  if (!stepEl) {
+    return console.error("Step element not found:", currentStep);
+  }
+
+  const el = stepEl.querySelector("input, select");
+
+  if (!el) {
+    return console.error("No input or select found in step", currentStep);
+  }
+
+  const val = el.value;
+
+  if (!val) {
+    showToast("Input can't be empty",'err');
+    return
+  }
+
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    updateUI();
+  }
+}
+
+
+function backStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      //  showToast("Input can't be empty");
+      updateUI();
+    }
+  }
+
+  function closeProfileModal() {
+    document.getElementById("profile-modal-overlay").remove();
+  }
+
+  async function submitData() {
+    const data = {
+      age: document.getElementById("dob").value,
+      gender: document.getElementById("gender").value,
+      weight: document.getElementById("weight").value,
+      class: document.getElementById("userClass").value,
+
+    };
+
+    
+showLoader();
+
+const res =  await fetch("/update", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        DOB:data.age,
+        gender:data.gender,
+        weight:data.weight,
+        academic:data.class
+      })
+    });
+
+     console.log("Profile Data:", data);
+   
+    closeProfileModal();
+
+    if(res.status === 200){
+      hideLoader();
+      showToast("data submitted");
+      
+      setTimeout(() => {
+      window.location.href = "/dashboard";
+      },500);
+    }
+
+   
+    
+  }
+
+  updateUI();
+
+
+    </script>
 </body>
 </html>
