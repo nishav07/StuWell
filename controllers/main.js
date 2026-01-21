@@ -20,12 +20,12 @@ async function components(req,res){
     const user = await User.findById(userID)
     
     const dailyData = await daily.find({userId:String(userID)});
-    console.log(dailyData)
+    console.log(dailyData[0].status)
   
   
     res.render(`components/${page}`,{
       user:user,
-      status:dailyData.status
+      status:dailyData[0].status
     })
 }
 

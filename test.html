@@ -159,15 +159,15 @@
 
  
     <div class="w-full h-2 bg-slate-200 rounded-full mb-6 overflow-hidden">
-      <div id="progress"
+      <div id="Dprogress"
         class="h-full bg-teal-500 transition-all duration-300">
       </div>
     </div>
 
   
-    <div id="steps" class="relative overflow-hidden h-[220px] p-4 text-teal-400">
+    <div id="dailyInput" class="relative overflow-hidden h-[220px] p-4 text-teal-400">
 
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Water Intake</h2>
         <input id="water" type="number"
@@ -180,7 +180,7 @@
       </div>
 
       
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">junkfood?</h2>
         <select id="junkFood"
@@ -196,7 +196,7 @@
       </div>
 
 
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">What you contain most?</h2>
         <select id="foodType"
@@ -215,7 +215,7 @@
       </div>
 
     
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">Study hour</h2>
         <input id="studyHr" type="number" max="300"
@@ -228,7 +228,7 @@
       </div>
 
 
-       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Any Symptoms?</h2>
         <select id="symptoms"
@@ -251,7 +251,7 @@
       </div>
 
 
-       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">sleep Hour</h2>
         <input id="sleepHr" type="number" max="300"
@@ -264,7 +264,7 @@
       </div>
 
 
-       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">Screem Time</h2>
         <input id="screentime" type="number" max="300"
@@ -277,7 +277,7 @@
       </div>
 
       
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
         <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Mood</h2>
         <select id="mood"
@@ -309,12 +309,12 @@
 
     <script>
       
-  let currentStep = 0;
-  const steps = document.querySelectorAll("#steps .step");
-  const progress = document.getElementById("progress");
+  let DcurrentStep = 0;
+  const daily = document.querySelectorAll("#daily .daily");
+  const Dprogress = document.getElementById("Dprogress");
 
   function updateUI() {
-    steps.forEach((step, index) => {
+    daily.forEach((step, index) => {
       step.classList.remove(
         "translate-x-full",
         "-translate-x-full",
@@ -330,7 +330,7 @@
       }
     });
 
-    progress.style.width =
+    Dprogress.style.width =
       ((currentStep + 1) / steps.length) * 100 + "%";
   }
 
