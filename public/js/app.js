@@ -209,5 +209,53 @@ const res =  await fetch("/update", {
     
   }
 
+
+   async function submitDailyData() {
+    const data = {
+      water: document.getElementById("water").value,
+      junkFood: document.getElementById("junkFood").value,
+      foodTye: document.getElementById("foodType").value,
+      studyHr: document.getElementById("studyHr").value,
+      mood: document.getElementById("mood").value,
+      symptoms: document.getElementById("symptoms").value,
+      sleepHr: document.getElementById("sleepHr").value,
+      screenTime: document.getElementById("screentime").value,
+    };
+
+    console.log(data);
+    
+// showLoader();
+
+// const res =  await fetch("/update", {
+//       method: "PATCH",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ 
+//         DOB:data.age,
+//         gender:data.gender,
+//         weight:data.weight,
+//         academic:data.class
+//       })
+//     });
+
+    //  console.log("Profile Data:", data);
+   
+    // closeProfileModal();
+
+    // if(res.status === 200){
+    //   hideLoader();
+    //   showToast("data submitted");
+      
+    //   setTimeout(() => {
+    //   window.location.href = "/dashboard";
+    //   },500);
+    // }
+
+   
+    
+  }
+
+
+  
+
   updateUI();
 
