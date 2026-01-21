@@ -1,6 +1,7 @@
 const { json } = require('express');
 const middleware = require("../middlewares/middleware.js");
 const User = require("../models/user.js");
+const daily = require("../models/dailyInput");
 
 
 
@@ -30,14 +31,19 @@ async function signup (req,res){
     const hashPass = await middleware.hashing(password);
     
     const user = new User({ userName:userName,password:hashPass,email:email});
+    
     await user.save();
+   
 
 
 
     req.session.user = {
         id:user._id
     }
+    const userId = user._id;
 
+    const newDaily = new daily({userId:userId});
+    await newDaily.save();
     req.flash("success","signuped & auto loggged in")
     res.redirect('/dashboard');
    } catch (error) {

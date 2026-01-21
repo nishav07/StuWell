@@ -9,9 +9,7 @@ function index(req,res){
 async function dashboard(req,res){
     const userID = req.session.user.id;
     const user = await User.findById(userID);
-    const dailyData = await daily.find({userId:userID});
-    console.log(dailyData)
-    res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk,status: dailyData.status});
+    res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk});
 }
 
 
@@ -20,10 +18,14 @@ async function components(req,res){
     const page = req.params.page;
     const userID = req.session.user.id;
     const user = await User.findById(userID)
+    
+    const dailyData = await daily.find({userId:String(userID)});
+    console.log(dailyData)
   
   
     res.render(`components/${page}`,{
-      user:user
+      user:user,
+      status:dailyData.status
     })
 }
 
