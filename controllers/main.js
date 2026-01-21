@@ -1,15 +1,20 @@
 
 const User = require("../models/user");
+const daily = require("../models/dailyInput");
+
 function index(req,res){
     res.render("index.ejs");
 }
 
 async function dashboard(req,res){
     const userID = req.session.user.id;
-    const user = await User.findById(userID)
-    res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk})
-    
+    const user = await User.findById(userID);
+    const dailyData = await daily.find({userId:userID});
+    console.log(dailyData)
+    res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk,status: dailyData.status});
 }
+
+
 
 async function components(req,res){
     const page = req.params.page;
