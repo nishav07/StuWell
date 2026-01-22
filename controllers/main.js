@@ -9,6 +9,7 @@ function index(req,res){
 async function dashboard(req,res){
     const userID = req.session.user.id;
     const user = await User.findById(userID);
+    console.log("data",!user.isProfileOk);
     res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk});
 }
 
@@ -77,14 +78,32 @@ const date = new Date().toISOString().split("T")[0];
         sleepHr,
         screenTime} );
 
-         await daily.findByAndUpdate(userID,{water:water,junkFood:junkFood,foodType:foodType,studyHr:studyHr,mood:mood,symptoms:symptoms,sleepHr:sleepHr,screentime:screenTime,date:date});
-         await daily.findByAndUpdate(userID,{status:"submitted"});
+       await daily.findOneAndUpdate(
+  { userId: userID, date: date },
+  {
+    $set: {
+      water,
+      junkFood,
+      foodType,
+      studyHr,
+      mood,
+      symptoms,
+      sleepHr,
+      screentime: screenTime,
+      status: "submitted"
+    }
+  },
+  { upsert: true }
+);
+
    
 
-        res.send(200);
+       res.sendStatus(200);
+
 
   } catch (error) {
-    res.send(400);
+   res.sendStatus(400);
+
   }
 
 }
