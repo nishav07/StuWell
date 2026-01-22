@@ -44,6 +44,22 @@ profileBtn.addEventListener("click", () => {
 
 //--------------------------- single page application code --------------------------------------------------------------------------
 
+function loadPage(page) {
+    fetch(`/components/${page}`)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content").innerHTML = html;
+        initPage(page);
+      });
+  }
+
+  function initPage(p){
+    if(p == "home"){
+      funx();
+    }
+}
+
+
 document.querySelectorAll("a[data-page]").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -71,6 +87,9 @@ function loadPage(page) {
 function initPage(p){
   if(p == "home"){
     funx();
+    return
+  } else {
+   
   }
 }
 
@@ -254,39 +273,26 @@ const res =  await fetch("/update", {
     //   },500);
     // }
 
-   
+     updateUI();
     
   }
 
 
   
 
-  updateUI();
+
 
 
 
   //-----------------------------------------------------Set Up for input modal-----------------------------------------------------------------------------------------
 
-
-
-  function loadPage(page) {
-    fetch(`/components/${page}`)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("content").innerHTML = html;
-        initPage(page);
-      });
-  }
-
-  function initPage(p){
-    if(p == "home"){
-      funx();
-    }
-}
-
   let DcurrentStep = 0;
   let daily = [];
   let Dprogress;
+
+
+
+  
 
 
 

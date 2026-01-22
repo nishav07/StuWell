@@ -53,6 +53,8 @@ console.log("data from update", {
 }
 
 async function input(req,res){
+  try {
+      
     const { water,
         junkFood,
         foodType,
@@ -61,6 +63,9 @@ async function input(req,res){
         symptoms,
         sleepHr,
         screenTime} = req.body;
+
+const userID = req.session.user.id;
+const date = new Date().toISOString().split("T")[0];
 
 
         console.log("backennd se input wala data",{ water,
@@ -72,7 +77,15 @@ async function input(req,res){
         sleepHr,
         screenTime} );
 
+         await daily.findByAndUpdate(userID,{water:water,junkFood:junkFood,foodType:foodType,studyHr:studyHr,mood:mood,symptoms:symptoms,sleepHr:sleepHr,screentime:screenTime,date:date});
+         await daily.findByAndUpdate(userID,{status:"submitted"});
+   
+
         res.send(200);
+
+  } catch (error) {
+    res.send(400);
+  }
 
 }
 
