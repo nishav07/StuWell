@@ -310,7 +310,7 @@
     <script>
       
   let DcurrentStep = 0;
-  const daily = document.querySelectorAll("#daily .daily");
+  const daily = document.querySelectorAll("#dailyInput .daily");
   const Dprogress = document.getElementById("Dprogress");
 
   function DupdateUI() {
@@ -321,9 +321,9 @@
         "opacity-0"
       );
 
-      if (index === currentStep) {
+      if (index === DcurrentStep) {
         step.classList.add("translate-x-0");
-      } else if (index < currentStep) {
+      } else if (index < DcurrentStep) {
         step.classList.add("-translate-x-full", "opacity-0");
       } else {
         step.classList.add("translate-x-full", "opacity-0");
@@ -331,7 +331,7 @@
     });
 
     Dprogress.style.width =
-      ((currentStep + 1) / daily.length) * 100 + "%";
+      ((DcurrentStep + 1) / daily.length) * 100 + "%";
   }
 
 function DnextStep() {
@@ -355,7 +355,7 @@ function DnextStep() {
   }
 
   if (DcurrentStep < daily.length - 1) {
-    DcurrentStep;
+    DcurrentStep++;
     DupdateUI();
   }
 }

@@ -35,8 +35,7 @@
 
 
                       
-
-        <div id="profile-modal-overlay"
+ <div id="D-profile-modal-overlay"
   class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur
          flex items-center justify-center">
 
@@ -49,7 +48,7 @@
 
   
     <button
-      onclick="closeProfileModal()"
+      onclick="DcloseProfileModal()"
       class="absolute top-10 right-7
              text-slate-400 hover:text-slate-700
              text-lg font-bold">
@@ -58,29 +57,29 @@
 
  
     <div class="w-full h-2 bg-slate-200 rounded-full mb-6 overflow-hidden">
-      <div id="progress"
+      <div id="Dprogress"
         class="h-full bg-teal-500 transition-all duration-300">
       </div>
     </div>
 
   
-    <div id="steps" class="relative overflow-hidden h-[220px] p-4 text-teal-400">
+    <div id="dailyInput" class="relative overflow-hidden h-[220px] p-4 text-teal-400">
 
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Water Intake</h2>
         <input id="water" type="number"
           class="w-full p-4 mb-4   rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none ">
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
       
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">junkfood?</h2>
         <select id="junkFood"
           class="w-full p-3 rounded-lg border border-slate-300
@@ -88,15 +87,15 @@
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
 
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">What you contain most?</h2>
         <select id="foodType"
           class="w-full p-3 rounded-lg border border-slate-300
@@ -107,28 +106,28 @@
           <option value="fats">fats</option>
         </select>
 
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
     
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">Study hour</h2>
         <input id="studyHr" type="number" max="300"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
 
-       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
+       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:underline">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Any Symptoms?</h2>
         <select id="symptoms"
           class="w-full p-3 rounded-lg border border-slate-300
@@ -143,41 +142,41 @@
            <option value="low_focus">low_focus</option>
         </select>
 
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
 
-       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">sleep Hour</h2>
         <input id="sleepHr" type="number" max="300"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
 
-       <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">Screem Time</h2>
         <input id="screentime" type="number" max="300"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
-        <button onclick="nextStep()" class="w-full bg-teal-500 hover:bg-teal-600
+        <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
                  text-white font-semibold py-2 rounded-lg transition">
           Next
         </button>
       </div>
 
       
-      <div class="step absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
-        <button onclick="backStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
+      <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Mood</h2>
         <select id="mood"
           class="w-full p-3 rounded-lg border border-slate-300
@@ -200,8 +199,7 @@
     </div>
   </div>
 </div>
-               
-
+  
               <% } %>
 </body>
 </html>

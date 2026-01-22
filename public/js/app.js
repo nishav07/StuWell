@@ -64,11 +64,15 @@ function loadPage(page) {
     .then(res => res.text())
     .then(html => {
       document.getElementById("content").innerHTML = html;
-    //   initPage(page);
+      initPage(page);
     });
 }
 
-
+function initPage(p){
+  if(p == "home"){
+    funx();
+  }
+}
 
 //-------------------------------------------------- modal verification page----------------------------------------------------------------------------
 
@@ -78,18 +82,18 @@ function showToast(message, type = "success", time = 2000) {
 
   msg.innerText = message;
 
-  // reset
+
   toast.classList.remove("hidden", "opacity-100", "-translate-y-1/2");
   toast.classList.add("opacity-0", "-translate-y-20");
 
-  // bg color
+
   toast.classList.remove("bg-green-600", "bg-red-600");
   toast.classList.add(type === "success" ? "bg-teal-600" : "bg-amber-600");
 
-  // force repaint
+
   toast.offsetHeight;
 
-  // show
+
   toast.classList.remove("opacity-0", "-translate-y-20");
   toast.classList.add("opacity-100", "-translate-y-1/2");
 
@@ -259,3 +263,151 @@ const res =  await fetch("/update", {
 
   updateUI();
 
+
+
+  //---------------------------------------------------------diffrent modal-------------------------------------------------------------------------------------------
+//   function openDailyModal(){
+//   document.body.insertAdjacentHTML("beforeend", modalHTML); // ya jo bhi
+//   funx(); // 👈 yahin call
+// }
+
+
+
+
+function loadPage(page) {
+  fetch(`/components/${page}`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("content").innerHTML = html;
+      initPage(page);
+    });
+}
+
+function initPage(p){
+  if(p == "home"){
+    funx();
+  }
+}
+
+let DcurrentStep = 0;
+let daily = [];
+let Dprogress;
+
+
+
+
+  
+  
+  function funx(){
+DcurrentStep = 0;  
+  daily = document.querySelectorAll("#dailyInput .daily");
+  Dprogress = document.getElementById("Dprogress");
+
+  DupdateUI();
+   }
+
+
+     function DupdateUI() {
+    daily.forEach((step, index) => {
+      step.classList.remove(
+        "translate-x-full",
+        "-translate-x-full",
+        "opacity-0"
+      );
+
+      if (index === DcurrentStep) {
+        step.classList.add("translate-x-0");
+      } else if (index < DcurrentStep) {
+        step.classList.add("-translate-x-full", "opacity-0");
+      } else {
+        step.classList.add("translate-x-full", "opacity-0");
+      }
+    });
+
+    Dprogress.style.width =
+      ((DcurrentStep + 1) / daily.length) * 100 + "%";
+  }
+
+
+   function DnextStep() {
+  const stepEl = daily[DcurrentStep];
+  
+  if (!stepEl) {
+    return console.error("Step element not found:", DcurrentStep);
+  }
+
+  const el = stepEl.querySelector("input, select");
+
+  if (!el) {
+    return console.error("No input or select found in step", DcurrentStep);
+  }
+
+  const val = el.value;
+
+  if (!val) {
+    showToast("Input can't be empty",'err');
+    return
+  }
+
+  if (DcurrentStep < daily.length - 1) {
+    DcurrentStep++;
+    DupdateUI();
+  }
+}
+
+   function DbackStep() {
+    if (DcurrentStep > 0) {
+      DcurrentStep--;
+      //  showToast("Input can't be empty");
+      DupdateUI();
+    }
+  }
+   
+  function DcloseProfileModal() {
+    document.getElementById("D-profile-modal-overlay").remove();
+  }
+
+
+    async function submitDailyData() {
+    const data = {
+      water: document.getElementById("water").value,
+      junkFood: document.getElementById("junkFood").value,
+      foodTye: document.getElementById("foodType").value,
+      studyHr: document.getElementById("studyHr").value,
+      mood: document.getElementById("mood").value,
+      symptoms: document.getElementById("symptoms").value,
+      sleepHr: document.getElementById("sleepHr").value,
+      screenTime: document.getElementById("screentime").value,
+    };
+
+    console.log(data);
+    
+// showLoader();
+
+// const res =  await fetch("/update", {
+//       method: "PATCH",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ 
+//         DOB:data.age,
+//         gender:data.gender,
+//         weight:data.weight,
+//         academic:data.class
+//       })
+//     });
+
+    //  console.log("Profile Data:", data);
+   
+    // closeProfileModal();
+
+    // if(res.status === 200){
+    //   hideLoader();
+    //   showToast("data submitted");
+      
+    //   setTimeout(() => {
+    //   window.location.href = "/dashboard";
+    //   },500);
+    // }
+
+   
+    
+  }
