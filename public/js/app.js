@@ -265,33 +265,28 @@ const res =  await fetch("/update", {
 
 
 
-  //---------------------------------------------------------diffrent modal-------------------------------------------------------------------------------------------
-//   function openDailyModal(){
-//   document.body.insertAdjacentHTML("beforeend", modalHTML); // ya jo bhi
-//   funx(); // 👈 yahin call
-// }
+  //-----------------------------------------------------Set Up for input modal-----------------------------------------------------------------------------------------
 
 
 
-
-function loadPage(page) {
-  fetch(`/components/${page}`)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("content").innerHTML = html;
-      initPage(page);
-    });
-}
-
-function initPage(p){
-  if(p == "home"){
-    funx();
+  function loadPage(page) {
+    fetch(`/components/${page}`)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content").innerHTML = html;
+        initPage(page);
+      });
   }
+
+  function initPage(p){
+    if(p == "home"){
+      funx();
+    }
 }
 
-let DcurrentStep = 0;
-let daily = [];
-let Dprogress;
+  let DcurrentStep = 0;
+  let daily = [];
+  let Dprogress;
 
 
 
@@ -299,7 +294,7 @@ let Dprogress;
   
   
   function funx(){
-DcurrentStep = 0;  
+  DcurrentStep = 0;  
   daily = document.querySelectorAll("#dailyInput .daily");
   Dprogress = document.getElementById("Dprogress");
 
@@ -358,7 +353,7 @@ DcurrentStep = 0;
    function DbackStep() {
     if (DcurrentStep > 0) {
       DcurrentStep--;
-      //  showToast("Input can't be empty");
+       showToast("Input can't be empty");
       DupdateUI();
     }
   }
@@ -372,7 +367,7 @@ DcurrentStep = 0;
     const data = {
       water: document.getElementById("water").value,
       junkFood: document.getElementById("junkFood").value,
-      foodTye: document.getElementById("foodType").value,
+      foodType: document.getElementById("foodType").value,
       studyHr: document.getElementById("studyHr").value,
       mood: document.getElementById("mood").value,
       symptoms: document.getElementById("symptoms").value,
@@ -382,31 +377,35 @@ DcurrentStep = 0;
 
     console.log(data);
     
-// showLoader();
+showLoader();
 
-// const res =  await fetch("/update", {
-//       method: "PATCH",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ 
-//         DOB:data.age,
-//         gender:data.gender,
-//         weight:data.weight,
-//         academic:data.class
-//       })
-//     });
+const res =  await fetch("/input", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        water:data.water,
+        junkFood: data.junkFood,
+        foodType: data.foodType,
+        studyHr : data.studyHr,
+        mood: data.mood,
+        symptoms: data.symptoms,
+        sleepHr: data.sleepHr,
+        screenTime: data.screenTime
+      })
+    });
 
-    //  console.log("Profile Data:", data);
+     console.log("Profile Data:", data);
    
-    // closeProfileModal();
+    DcloseProfileModal();
 
-    // if(res.status === 200){
-    //   hideLoader();
-    //   showToast("data submitted");
+    if(res.status === 200){
+      hideLoader();
+      showToast("data submitted");
       
-    //   setTimeout(() => {
-    //   window.location.href = "/dashboard";
-    //   },500);
-    // }
+      setTimeout(() => {
+      window.location.href = "/dashboard";
+      },500);
+    }
 
    
     

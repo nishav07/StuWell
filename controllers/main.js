@@ -52,9 +52,34 @@ console.log("data from update", {
   
 }
 
+async function input(req,res){
+    const { water,
+        junkFood,
+        foodType,
+        studyHr,
+        mood,
+        symptoms,
+        sleepHr,
+        screenTime} = req.body;
+
+
+        console.log("backennd se input wala data",{ water,
+        junkFood,
+        foodType,
+        studyHr,
+        mood,
+        symptoms,
+        sleepHr,
+        screenTime} );
+
+        res.send(200);
+
+}
+
 module.exports = {
     index,
     dashboard,
     components,
-    update
+    update,
+    input
 }
