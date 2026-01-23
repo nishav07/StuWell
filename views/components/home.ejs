@@ -10,74 +10,76 @@
 
 
                 <div id="snap-shot-section" class="px-5 py-5">
-                <!-- Snapshot Wrapper (replaces body classes) -->
 <div class="bg-gray-50 p-6">
   <div class=" mx-auto">
 
-    <!-- Today's Snapshot Section -->
+    
     <div class="mb-8">
       <h1 class="text-2xl font-semibold text-gray-800 mb-4">
         Today's Snapshot
       </h1>
 
-      <!-- Cards Grid -->
+    
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 
-        <!-- Water -->
+     
         <div class="bg-blue-200 rounded-2xl p-6 flex flex-col items-center text-center">
           <svg class="w-8 h-8 mb-2 text-blue-800" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd"
               d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z"
               clip-rule="evenodd" />
           </svg>
-          <p class="text-2xl font-bold text-gray-800">2.5 L</p>
+          <p class="text-2xl font-bold text-gray-800"><%= data.water %>L</p>
           <p class="text-sm text-gray-700">Water Intake</p>
         </div>
 
-        <!-- Sleep -->
+     
         <div class="bg-green-200 rounded-2xl p-6 flex flex-col items-center text-center">
           <svg class="w-8 h-8 mb-2 text-green-800" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
           </svg>
-          <p class="text-2xl font-bold text-gray-800">7.5 hrs</p>
+          <p class="text-2xl font-bold text-gray-800"><%= data.sleepHr %>Hr</p>
           <p class="text-sm text-gray-700">Sleep Duration</p>
         </div>
 
-        <!-- Study -->
+      
         <div class="bg-teal-200 rounded-2xl p-6 flex flex-col items-center text-center">
           <svg class="w-8 h-8 mb-2 text-teal-800" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
           </svg>
-          <p class="text-2xl font-bold text-gray-800">4 hrs</p>
+          <p class="text-2xl font-bold text-gray-800"><%= data.studyHr %>Hr</p>
           <p class="text-sm text-gray-700">Study Hours</p>
         </div>
 
-        <!-- Mood -->
+       
         <div class="bg-orange-200 rounded-2xl p-6 flex flex-col items-center text-center">
           <svg class="w-8 h-8 mb-2 text-orange-800" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd"
               d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7.536 5.879a1 1 0 001.415 0 3 3 0 014.242 0 1 1 0 001.415-1.415 5 5 0 00-7.072 0 1 1 0 000 1.415z"
               clip-rule="evenodd" />
           </svg>
-          <p class="text-2xl font-bold text-gray-800">No</p>
+          <p class="text-2xl font-bold text-gray-800"><%= data.mood %></p>
           <p class="text-sm text-gray-700">Mood</p>
         </div>
 
-        <!-- Junk Food -->
+   
         <div class="bg-yellow-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <p class="text-2xl font-bold text-gray-800">No</p>
+          <p class="text-2xl font-bold text-gray-800"><%= data.junkFood %></p>
           <p class="text-sm text-gray-700">Junk Food</p>
         </div>
 
-        <!-- Screen Time -->
+     
         <div class="bg-purple-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <p class="text-2xl font-bold text-gray-800">3 hrs</p>
+          <p class="text-2xl font-bold text-gray-800"><%= data.screenTime %>Hr</p>
           <p class="text-sm text-gray-700">Screen Time</p>
         </div>
+
+
+
       </div>
     </div>
 
-    <!-- Last 7 Days -->
+ 
     <div class="bg-white rounded-2xl p-6 shadow-sm">
       <h2 class="text-xl font-semibold text-gray-800 mb-4">
         Last 7 Days Overview

@@ -303,12 +303,6 @@ const res =  await fetch("/update", {
   let Dprogress;
 
 
-
-  
-
-
-
-
   
   
   function funx(){
