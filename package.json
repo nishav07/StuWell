@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@google/genai": "^1.38.0",
     "@tailwindcss/cli": "^4.1.18",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.8.0",
