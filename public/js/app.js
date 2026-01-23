@@ -312,15 +312,28 @@ const res =  await fetch("/update", {
   
   
   function funx(){
+
   DcurrentStep = 0;  
   daily = document.querySelectorAll("#dailyInput .daily");
   Dprogress = document.getElementById("Dprogress");
+
+    if(!daily.length || !Dprogress) {
+    console.log("Daily modal not found (already submitted today)");
+    return; 
+  }
 
   DupdateUI();
    }
 
 
      function DupdateUI() {
+
+        if(!daily.length || !Dprogress) {
+    console.log("Daily modal not found (already submitted today)");
+    return; 
+  }
+
+
     daily.forEach((step, index) => {
       step.classList.remove(
         "translate-x-full",

@@ -126,6 +126,8 @@ const date = new Date().toISOString().split("T")[0];
   { userId: userID, date: date },
   {
     $set: {
+      userId: userID,        
+      date: date, 
       water,
       junkFood,
       foodType,
