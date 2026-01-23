@@ -72,6 +72,10 @@ document.querySelectorAll("a[data-page]").forEach(link => {
 
 document.addEventListener("DOMContentLoaded" , () => {
   loadPage("home");
+
+  if(document.getElementById("profile-modal-overlay") ) {
+    initProfileModal()
+  }
 });
 
 
@@ -126,11 +130,19 @@ function showToast(message, type = "success", time = 2000) {
   }, time);
 }
 
+let currentStep = 0;
+let steps;
+let progress;
+function initProfileModal(){
+  currentStep = 0;
+  steps = document.querySelectorAll("#steps .step");
+   progress = document.getElementById("progress");
+  updateUI();
+}
 
-
-  let currentStep = 0;
-  const steps = document.querySelectorAll("#steps .step");
-  const progress = document.getElementById("progress");
+  // let currentStep = 0;
+  // const steps = document.querySelectorAll("#steps .step");
+  // const progress = document.getElementById("progress");
 
   function updateUI() {
     steps.forEach((step, index) => {
