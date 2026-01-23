@@ -42,8 +42,8 @@ async function signup (req,res){
     }
     const userId = user._id;
 
-    const newDaily = new daily({userId:userId});
-    await newDaily.save();
+    // const newDaily = new daily({userId:userId});
+    // await newDaily.save();
     req.flash("success","signuped & auto loggged in")
     res.redirect('/dashboard');
    } catch (error) {

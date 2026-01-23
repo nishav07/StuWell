@@ -6,28 +6,72 @@ function index(req,res){
     res.render("index.ejs");
 }
 
-async function dashboard(req,res){
+// async function dashboard(req,res){
+//     const userID = req.session.user.id;
+//     const user = await User.findById(userID);
+//     console.log("data",!user.isProfileOk);
+//     res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk});
+// }
+
+
+
+// async function components(req,res){
+//     const page = req.params.page;
+//     const userID = req.session.user.id;
+//     const user = await User.findById(userID)
+//     const date = new Date().toISOString().split("T")[0];
+
+//     // const dailyData = await daily.find({userId:String(userID)});
+//     // console.log(dailyData[0].status)
+//     const inputStatus = await daily.find({userId:userID,date:date});
+  
+  
+//     res.render(`components/${page}`,{
+//       user:user,
+      
+//     })
+// }
+
+
+async function dashboard(req, res) {
     const userID = req.session.user.id;
     const user = await User.findById(userID);
-    console.log("data",!user.isProfileOk);
-    res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk});
+    const date = new Date().toISOString().split("T")[0];
+    
+   
+    const showProfileModal = !user.isProfileOk;
+    
+   
+    let status = "pending";
+    if (user.isProfileOk) {
+        const inputStatus = await daily.find({ userId: userID, date: date });
+        status = inputStatus.length > 0 ? "submitted" : "pending";
+    }
+    
+    console.log("Profile Modal:", showProfileModal);
+    console.log("Daily Status:", status);
+    
+    res.render("dashboard.ejs", {
+        showProfileModal: showProfileModal,
+        status: status 
+    });
 }
 
 
-
-async function components(req,res){
+async function components(req, res) {
     const page = req.params.page;
     const userID = req.session.user.id;
-    const user = await User.findById(userID)
+    const user = await User.findById(userID);
+    const date = new Date().toISOString().split("T")[0];
     
-    const dailyData = await daily.find({userId:String(userID)});
-    console.log(dailyData[0].status)
-  
-  
-    res.render(`components/${page}`,{
-      user:user,
-      status:dailyData[0].status
-    })
+    
+    const inputStatus = await daily.find({ userId: userID, date: date });
+    const status = inputStatus.length > 0 ? "submitted" : "pending";
+    
+    res.render(`components/${page}`, {
+        user: user,
+        status: status  
+    });
 }
 
 async function update(req,res){
