@@ -71,16 +71,20 @@ async function components(req, res) {
     
     
     const inputStatus = await daily.find({ userId: userID, date: date });
+    const dailyInput = await daily.find({ userId: userID });
+    console.log("daily input",dailyInput)
     const status = inputStatus.length > 0 ? "submitted" : "pending";
+    const enoughData = dailyInput.length < 5 ? false : true;
 
      const dailyData = await daily.find({userId:userID,date:date});
-    console.log("daily data",dailyData[0]);
+    console.log("daily data",dailyData);
    
     
     res.render(`components/${page}`, {
         user: user,
         status: status,
-        data:dailyData[0]
+        data:dailyData[0],
+        IsTsEnough:enoughData
     });
 }
 

@@ -1,9 +1,43 @@
-<div class="max-w-2xl mx-auto p-4 md:p-6">
+<div class=" mx-auto p-4 md:p-6">
+
+    <% if(!IsTsEnough) {%>
+        <div class="flex flex-col items-center justify-center text-center bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-200">
+    
+
+    <div class="mb-4">
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-teal-100 flex items-center justify-center">
+            <i class="fa-solid fa-chart-simple text-teal-600 text-2xl md:text-3xl"></i>
+        </div>
+    </div>
+
+ 
+    <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">
+        We’re still learning your pattern
+    </h2>
+
+   
+    <p class="text-sm md:text-base text-gray-600 max-w-md mb-4">
+        We’re collecting your daily inputs to understand your habits better.  
+        Keep checking in for a few more days to unlock insights and weekly summaries.
+    </p>
+
+    <div class="flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-2 rounded-full text-xs md:text-sm">
+        <i class="fa-solid fa-hourglass-half"></i>
+        <span>Not enough data yet</span>
+    </div>
+
+</div>
+
+        <% } %>
+
+
+        <% if(IsTsEnough) {%>
+           
 
     <div class="mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Weekly Summary</h1>
         <p class="text-gray-600 text-sm">Your habits over the last 7 days</p>
-        <p class="text-gray-500 text-sm">Jan 18 - Jan 24</p>
+        <!-- <p class="text-gray-500 text-sm">Jan 18 - Jan 24</p> -->
     </div>
 
  
@@ -143,4 +177,6 @@
             You've stayed very consistent with your sleep schedule week! We noticed screen time peaks on your heavy study days—likely—likely during research sessions.
         </p>
     </div>
+
+     <% } %>
 </div>
