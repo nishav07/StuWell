@@ -75,6 +75,7 @@ async function components(req, res) {
 
      const dailyData = await daily.find({userId:userID,date:date});
     console.log("daily data",dailyData[0]);
+   
     
     res.render(`components/${page}`, {
         user: user,

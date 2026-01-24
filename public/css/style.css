@@ -39,6 +39,9 @@
     --color-sky-900: oklch(39.1% 0.09 240.876);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-800: oklch(42.4% 0.199 265.638);
+    --color-violet-300: oklch(81.1% 0.111 293.571);
+    --color-violet-500: oklch(60.6% 0.25 292.717);
+    --color-violet-800: oklch(43.2% 0.232 292.759);
     --color-purple-200: oklch(90.2% 0.063 306.703);
     --color-purple-800: oklch(43.8% 0.218 303.724);
     --color-pink-200: oklch(89.9% 0.061 343.231);
@@ -392,9 +395,6 @@
   .min-h-full {
     min-height: 100%;
   }
-  .min-h-screen {
-    min-height: 100vh;
-  }
   .w-3 {
     width: calc(var(--spacing) * 3);
   }
@@ -419,17 +419,11 @@
   .w-full {
     width: 100%;
   }
-  .max-w-2xl {
-    max-width: var(--container-2xl);
-  }
   .max-w-120 {
     max-width: calc(var(--spacing) * 120);
   }
   .max-w-sm {
     max-width: var(--container-sm);
-  }
-  .min-w-28 {
-    min-width: calc(var(--spacing) * 28);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -605,9 +599,6 @@
   .bg-orange-200 {
     background-color: var(--color-orange-200);
   }
-  .bg-pink-200 {
-    background-color: var(--color-pink-200);
-  }
   .bg-purple-200 {
     background-color: var(--color-purple-200);
   }
@@ -634,9 +625,6 @@
   }
   .bg-teal-200 {
     background-color: var(--color-teal-200);
-  }
-  .bg-teal-300 {
-    background-color: var(--color-teal-300);
   }
   .bg-teal-500 {
     background-color: var(--color-teal-500);
@@ -862,12 +850,6 @@
   .text-orange-800 {
     color: var(--color-orange-800);
   }
-  .text-pink-800 {
-    color: var(--color-pink-800);
-  }
-  .text-purple-800 {
-    color: var(--color-purple-800);
-  }
   .text-red-500 {
     color: var(--color-red-500);
   }
@@ -895,14 +877,17 @@
   .text-teal-800 {
     color: var(--color-teal-800);
   }
-  .text-teal-900 {
-    color: var(--color-teal-900);
+  .text-violet-300 {
+    color: var(--color-violet-300);
+  }
+  .text-violet-500 {
+    color: var(--color-violet-500);
+  }
+  .text-violet-800 {
+    color: var(--color-violet-800);
   }
   .text-white {
     color: var(--color-white);
-  }
-  .text-yellow-800 {
-    color: var(--color-yellow-800);
   }
   .underline {
     text-decoration-line: underline;
