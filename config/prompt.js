@@ -20,7 +20,16 @@ FIELD MEANINGS:
 - symptoms: physical or mental symptoms
 - sleepHr: sleep hours
 - screentime: mobile / screen usage in hours
-- status: submitted or missed
+
+FIELD OUTPUT RULES:
+- water, sleep, screenTime, food, study, mood, symptoms:
+  → Max 20 words per field
+  → Min 10 words per field
+
+  PROGRESS RULES:
+- "good" array: overall 20-30 words
+- "bad" array: overall 20-30 words
+
 
 USER DATA (ARRAY OF OBJECTS):
 ${JSON.stringify(userDataArray, null, 2)}
