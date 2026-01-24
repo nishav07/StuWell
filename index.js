@@ -36,6 +36,16 @@ app.use(middleware.renew);
 
 app.use("/",Route);
 
+const { generateText } = require("./config/ai.js");
+
+async function main() {
+  const result = await generateText("Explain how AI works in a few words");
+  console.log(result);
+}
+
+main();
+
+
 app.listen(port,() => {
     console.log(`app listening at port ${port}`)
 })
