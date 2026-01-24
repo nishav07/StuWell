@@ -9,8 +9,8 @@
                 </div>
 
 
-                <div id="snap-shot-section" class="px-5 py-5">
-<div class="bg-gray-50 p-6">
+                <div id="snap-shot-section" class="px-2 py-2 md:px-5 md:py-5">
+<div class="bg-gray-50 p-3 md:p-6 rounded-2xl">
   <div class=" mx-auto">
 
     
@@ -31,21 +31,21 @@
 
      
         <div class="bg-green-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <i class="fa-solid fa-bed text-3xl text-violet-500"></i>
+          <i class="fa-solid fa-bed text-3xl text-cyan-400"></i>
           <p class="text-2xl font-bold text-gray-800"><%= data ? data.sleepHr : 0 %>Hr</p>
           <p class="text-sm text-gray-700">Sleep Duration</p>
         </div>
 
       
         <div class="bg-teal-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <i class="fa-solid fa-book text-3xl text-violet-500"></i>
+          <i class="fa-solid fa-book text-3xl text-rose-400"></i>
           <p class="text-2xl font-bold text-gray-800"><%= data ? data.studyHr : 0 %>Hr</p>
           <p class="text-sm text-gray-700">Study Hours</p>
         </div>
 
        
         <div class="bg-orange-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <i class="fa-solid fa-face-grin-wink text-3xl text-violet-500"></i>
+          <i class="fa-solid fa-face-grin-wink text-3xl text-purple-400"></i>
           <p class="text-2xl font-bold text-gray-800"><%= data ? data.mood : 0 %></p>
           <p class="text-sm text-gray-700">Mood</p>
         </div>
@@ -59,9 +59,22 @@
 
      
         <div class="bg-purple-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <i class="fa-solid fa-mobile text-3xl text-violet-500"></i>
+          <i class="fa-solid fa-mobile text-3xl text-indigo-400"></i>
           <p class="text-2xl font-bold text-gray-800"><%= data ? data.screentime : 0 %>Hr</p>
           <p class="text-sm text-gray-700">Screen Time</p>
+        </div>
+
+        <div class="bg-purple-200 rounded-2xl p-6 flex flex-col items-center text-center">
+          <i class="fa-solid fa-user-doctor text-3xl text-teal-400 "></i>
+          <p class="text-2xl font-bold text-gray-800"><%= data ? data.symptoms : Null %></p>
+          <p class="text-sm text-gray-700">Symptoms</p>
+        </div>
+
+
+        <div class="bg-green-200 rounded-2xl p-6 flex flex-col items-center text-center">
+          <i class="fa-solid fa-bowl-food text-3xl text-fuchsia-400"></i>
+          <p class="text-2xl font-bold text-gray-800"><%= data ? data.foodType : Null %></p>
+          <p class="text-sm text-gray-700">contain most</p>
         </div>
 
 
