@@ -36,14 +36,14 @@ app.use(middleware.renew);
 
 app.use("/",Route);
 
-const { generateText } = require("./config/ai.js");
+// const { generateText } = require("./config/ai.js");
 
-async function main() {
-  const result = await generateText("Explain how AI works in a few words");
-  console.log(result);
-}
+// async function main() {
+//   const result = await generateText("Explain how AI works in a few words");
+//   console.log(result);
+// }
 
-main();
+// main();
 
 
 app.listen(port,() => {

@@ -105,6 +105,273 @@
 
               </div>
 
+
+
+              <!-- components/suggestions.ejs -->
+
+<div class=" mx-auto p-4 md:p-6">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Daily Suggestions</h1>
+    
+    <div class="space-y-4">
+
+        <!-- ==================== WATER INTAKE SUGGESTIONS ==================== -->
+        <% if (data.water < 2) { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-droplet text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">Low Water Intake ⚠️</h3>
+                    <p class="text-sm text-red-700">You drank only <%= data.water %>L today. Try to reach 2-3L for better hydration and energy!</p>
+                </div>
+            </div>
+        <% } else if (data.water >= 2 && data.water <= 3) { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-droplet text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Perfect Hydration! 💧</h3>
+                    <p class="text-sm text-green-700">Excellent! You drank <%= data.water %>L today. Keep maintaining this healthy habit!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-droplet text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">High Water Intake 🚰</h3>
+                    <p class="text-sm text-yellow-700">You drank <%= data.water %>L today. Great, but ensure it's balanced throughout the day!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== JUNK FOOD SUGGESTIONS ==================== -->
+        <% if (data.junkFood === "yes") { %>
+            <div class="bg-orange-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-orange-500">
+                <i class="fa-solid fa-burger text-2xl text-orange-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-orange-800 mb-1">Watch Your Diet 🍔</h3>
+                    <p class="text-sm text-orange-700">You had junk food today. Try to limit it to weekends for better health and energy!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-burger text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Healthy Eating! 🥗</h3>
+                    <p class="text-sm text-green-700">Great job avoiding junk food today! Your body thanks you!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== FOOD TYPE SUGGESTIONS ==================== -->
+        <% if (data.foodType === "balanced") { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-utensils text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Balanced Diet! 🍽️</h3>
+                    <p class="text-sm text-green-700">Perfect! You're eating a balanced diet. Keep this up for optimal health!</p>
+                </div>
+            </div>
+        <% } else if (data.foodType === "carbs") { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-bread-slice text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">High Carbs Today 🍞</h3>
+                    <p class="text-sm text-yellow-700">You consumed mostly carbs. Try adding more protein and veggies for balance!</p>
+                </div>
+            </div>
+        <% } else if (data.foodType === "protein") { %>
+            <div class="bg-blue-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-blue-500">
+                <i class="fa-solid fa-drumstick-bite text-2xl text-blue-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-blue-800 mb-1">High Protein! 🍗</h3>
+                    <p class="text-sm text-blue-700">Good protein intake! Don't forget to add carbs and healthy fats for energy!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-orange-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-orange-500">
+                <i class="fa-solid fa-bacon text-2xl text-orange-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-orange-800 mb-1">High Fats Today 🥑</h3>
+                    <p class="text-sm text-orange-700">Lots of fats today! Balance with proteins and complex carbs tomorrow!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== STUDY HOURS SUGGESTIONS ==================== -->
+        <% if (data.studyHr < 3) { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-book-open text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">Low Study Time ⏰</h3>
+                    <p class="text-sm text-red-700">Only <%= data.studyHr %> hours today. Try to aim for 4-6 hours for better results!</p>
+                </div>
+            </div>
+        <% } else if (data.studyHr >= 3 && data.studyHr <= 6) { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-book-open text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Great Study Session! 📚</h3>
+                    <p class="text-sm text-green-700">Excellent! <%= data.studyHr %> hours is perfect. Keep this consistency!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-book-open text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">Heavy Study Day 📖</h3>
+                    <p class="text-sm text-yellow-700"><%= data.studyHr %> hours! Great dedication, but don't forget breaks and rest!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== MOOD SUGGESTIONS ==================== -->
+        <% if (data.mood === "veryBad" || data.mood === "Bad") { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-face-frown text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">Feeling Low? 😞</h3>
+                    <p class="text-sm text-red-700">Take a break! Go for a walk, talk to friends, or do something you enjoy. You got this!</p>
+                </div>
+            </div>
+        <% } else if (data.mood === "neutral") { %>
+            <div class="bg-blue-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-blue-500">
+                <i class="fa-solid fa-face-meh text-2xl text-blue-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-blue-800 mb-1">Neutral Mood 😐</h3>
+                    <p class="text-sm text-blue-700">Try doing something fun! Listen to music, exercise, or connect with friends!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-face-smile text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Feeling Great! 😊</h3>
+                    <p class="text-sm text-green-700">Awesome mood today! Keep spreading positivity!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== SYMPTOMS SUGGESTIONS ==================== -->
+        <% if (data.symptoms === "none") { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-heart-pulse text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Feeling Healthy! 💪</h3>
+                    <p class="text-sm text-green-700">No symptoms today! Keep maintaining your healthy lifestyle!</p>
+                </div>
+            </div>
+        <% } else if (data.symptoms === "headache") { %>
+            <div class="bg-orange-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-orange-500">
+                <i class="fa-solid fa-head-side-virus text-2xl text-orange-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-orange-800 mb-1">Headache Alert 🤕</h3>
+                    <p class="text-sm text-orange-700">Drink more water, rest your eyes from screens, and get fresh air!</p>
+                </div>
+            </div>
+        <% } else if (data.symptoms === "fatigue") { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-battery-quarter text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">Feeling Tired 😴</h3>
+                    <p class="text-sm text-yellow-700">Get proper sleep, eat nutritious food, and take short breaks during study!</p>
+                </div>
+            </div>
+        <% } else if (data.symptoms === "stress" || data.symptoms === "anxiety") { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-brain text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">Stress Detected 😰</h3>
+                    <p class="text-sm text-red-700">Practice deep breathing, meditation, or talk to someone you trust. You're not alone!</p>
+                </div>
+            </div>
+        <% } else if (data.symptoms === "stomach_discomfort") { %>
+            <div class="bg-orange-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-orange-500">
+                <i class="fa-solid fa-stomach text-2xl text-orange-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-orange-800 mb-1">Stomach Issues 🤢</h3>
+                    <p class="text-sm text-orange-700">Avoid junk food, drink warm water, and eat light meals. Rest well!</p>
+                </div>
+            </div>
+        <% } else if (data.symptoms === "body_pain") { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-person-walking text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">Body Pain 💢</h3>
+                    <p class="text-sm text-red-700">Stretch regularly, maintain good posture while studying, and get enough rest!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-eye text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">Low Focus 🎯</h3>
+                    <p class="text-sm text-yellow-700">Take short breaks, use Pomodoro technique, and minimize distractions!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== SLEEP HOURS SUGGESTIONS ==================== -->
+        <% if (data.sleepHr < 6) { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-bed text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">Low Sleep! ⚠️</h3>
+                    <p class="text-sm text-red-700">Only <%= data.sleepHr %> hours! Aim for 7-8 hours for better health and focus!</p>
+                </div>
+            </div>
+        <% } else if (data.sleepHr >= 6 && data.sleepHr <= 8) { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-bed text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Perfect Sleep! 😴</h3>
+                    <p class="text-sm text-green-700">Great! <%= data.sleepHr %> hours is ideal. Keep this sleep schedule!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-bed text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">Too Much Sleep 💤</h3>
+                    <p class="text-sm text-yellow-700"><%= data.sleepHr %> hours might be too much! Try maintaining 7-8 hours for better energy!</p>
+                </div>
+            </div>
+        <% } %>
+
+
+        <!-- ==================== SCREEN TIME SUGGESTIONS ==================== -->
+        <% if (data.screentime < 3) { %>
+            <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
+                <i class="fa-solid fa-mobile-screen text-2xl text-green-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 mb-1">Low Screen Time! 📱</h3>
+                    <p class="text-sm text-green-700">Excellent! Only <%= data.screentime %> hours. Your eyes thank you!</p>
+                </div>
+            </div>
+        <% } else if (data.screentime >= 3 && data.screentime <= 5) { %>
+            <div class="bg-yellow-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-yellow-500">
+                <i class="fa-solid fa-mobile-screen text-2xl text-yellow-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-yellow-800 mb-1">Moderate Screen Time 📲</h3>
+                    <p class="text-sm text-yellow-700"><%= data.screentime %> hours is okay, but try to reduce non-study screen time!</p>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
+                <i class="fa-solid fa-mobile-screen text-2xl text-red-600 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 mb-1">High Screen Time! 🚨</h3>
+                    <p class="text-sm text-red-700"><%= data.screentime %> hours is too much! Take regular breaks and use blue light filters!</p>
+                </div>
+            </div>
+        <% } %>
+
+    </div>
+</div>
+
               </div>
 
 
@@ -275,6 +542,8 @@
 
     </div>
   </div>
+
+  
 </div>
   
               <% } %>
