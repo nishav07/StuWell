@@ -78,13 +78,77 @@ async function components(req, res) {
 
      const dailyData = await daily.find({userId:userID,date:date});
     console.log("daily data",dailyData);
+
+    //---------------------- important----------------------------------------
+    
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - 6); 
+    
+
+    const start = startDate.toISOString().split("T")[0];
+    const end = endDate.toISOString().split("T")[0];
+    
+ 
+    const weekData = await daily.find({
+        userId: userID,
+        date: { 
+            $gte: start, 
+            $lte: end 
+        }
+    }).sort({ date: 1 });
+    
+    const submittedData = weekData.filter(d => d.status === 'submitted');
+    const submittedDays = submittedData.length;
+    
+  
+    const avgWater = submittedData.length > 0 
+        ? submittedData.reduce((sum, d) => sum + (d.water || 0), 0) / submittedData.length 
+        : 0;
+    
+    const avgSleep = submittedData.length > 0
+        ? submittedData.reduce((sum, d) => sum + (d.sleepHr || 0), 0) / submittedData.length
+        : 0;
+    
+    const avgStudy = submittedData.length > 0
+        ? submittedData.reduce((sum, d) => sum + (d.studyHr || 0), 0) / submittedData.length
+        : 0;
+    
+    const avgScreen = submittedData.length > 0
+        ? submittedData.reduce((sum, d) => sum + (d.screentime || 0), 0) / submittedData.length
+        : 0;
+    
+   
+    const junkFoodDays = submittedData.filter(d => d.junkFood === 'yes').length;
+    
+   
+    const moodCount = {};
+    submittedData.forEach(d => {
+        if (d.mood) {
+            moodCount[d.mood] = (moodCount[d.mood] || 0) + 1;
+        }
+    });
+    
+    const mostCommonMood = Object.keys(moodCount).length > 0
+        ? Object.keys(moodCount).reduce((a, b) => moodCount[a] > moodCount[b] ? a : b)
+        : 'neutral';
    
     
     res.render(`components/${page}`, {
         user: user,
         status: status,
         data:dailyData[0],
-        IsTsEnough:enoughData
+        IsTsEnough:enoughData,
+        weekData: weekData,
+        avgWater: avgWater,
+        avgSleep: avgSleep,
+        avgStudy: avgStudy,
+        avgScreen: avgScreen,
+        submittedDays: submittedDays,
+        junkFoodDays: junkFoodDays,
+        mostCommonMood: mostCommonMood,
+        startDate: startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     });
 }
 
