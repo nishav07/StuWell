@@ -1,3 +1,35 @@
+ document.addEventListener("click", (e) => {
+  if (e.target.closest("[check-stats]")) reminder(e);
+});
+
+ 
+function reminder(e){
+  const btn = e.target.closest("[check-stats]");
+  if(!btn) return;
+  const main = btn.closest("#hero-section");
+  if(main){
+    const page = main.querySelector("#stats");
+    page.scrollIntoView({ behavior: "smooth" });
+  }
+ 
+  
+}
+ 
+
+const flash = document.getElementById("flash");
+
+  if (flash) {
+    setTimeout(() => {
+      flash.classList.remove("opacity-0", "translate-y-6");
+    }, 50);
+
+
+    setTimeout(() => {
+      flash.classList.add("opacity-0", "translate-y-6");
+    }, 3000);
+  }
+  
+ 
  function showLoader() {
     const loader = document.getElementById("loader");
     loader.classList.remove("hidden");
@@ -56,6 +88,7 @@ function loadPage(page) {
       funx();
     }
 }
+
 
 
 document.querySelectorAll("a[data-page]").forEach(link => {

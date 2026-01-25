@@ -77,7 +77,32 @@
                     </form>
                 </div>
             </div>
+
+       <% if (success && success.length) { %>
+  <div id="flash"
+    class="fixed bottom-25 right-6 z-50
+           bg-teal-500 text-white
+           px-6 py-4 rounded-xl shadow-xl text-sm
+           opacity-0 translate-y-6
+           transition-all duration-500 ease-out">
+    <%= success[0] %>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div id="flash"
+    class="fixed bottom-25 right-6 z-50
+           bg-rose-100 text-rose-700 border border-rose-300
+ font-medium
+           px-6 py-4 rounded-xl shadow-xl text-sm
+           opacity-0 translate-y-6
+           transition-all duration-500 ease-out">
+    <%= error[0] %>
+  </div>
+<% } %>
         </main>
+
+         
 
 
         <footer id="footer-section" class="bg-white px-4">

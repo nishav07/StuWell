@@ -5,7 +5,10 @@
                    <h1 class="text-3xl md:text-5xl lg:text-6xl text-black font-bold text-left">How was Your yesterday?</h1>
                    <p class="text-2xl md:text-3xl text-black font-normal text-left">it takes less a minute.</p>
                </div>
-                  <button  class="p-2 px-6  text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300" data-daily-check>Starts Daily Check-in</button>
+                  <% if(status !== "submitted"){ %>
+                    <button  class="p-2 px-6  text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300">Starts Daily Check-in</button>
+                    <% } %>
+                    <button  class="p-2 px-6  text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300" check-stats>Get Suggestions</button>
                 </div>
 
 
@@ -110,7 +113,7 @@
                <% if (data) { %>
              
 
-<div class=" mx-auto p-4 md:p-6">
+<div class="mx-auto p-4 md:p-6" id="stats">
     <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Daily Suggestions</h1>
     
     <div class="space-y-4">
@@ -371,10 +374,15 @@
         <% } %>
 
     </div>
+    
 </div>
 
 <% } %>
 
+ <div class="mt-6 text-center">
+        <p class="text-xs text-gray-500">StuWell v1.0</p>
+        <p class="text-xs text-gray-400">Made with ❤️ for students</p>
+    </div>
 
 
 

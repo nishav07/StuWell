@@ -58,7 +58,7 @@ async function login (req,res){
 
      if(!users){
         req.flash("error","404 user not found")
-        res.redirect("/");
+        res.redirect("/auth");
         return
      }
 
@@ -75,8 +75,8 @@ async function login (req,res){
        res.redirect("/dashboard");
        return
     } else {
-         req.flash("error","password galat hai sir")
-       res.redirect("/");
+         req.flash("error","Incorrect Password")
+       res.redirect("/auth");
        return
     }
 
