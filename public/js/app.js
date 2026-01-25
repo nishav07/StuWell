@@ -9,8 +9,6 @@
     loader.classList.add("hidden");
   }
 
-
-
 const navItems = document.querySelectorAll(".nav-item");
 
 navItems.forEach(item => {
@@ -245,19 +243,19 @@ const res =  await fetch("/update", {
   }
 
 
-   async function submitDailyData() {
-    const data = {
-      water: document.getElementById("water").value,
-      junkFood: document.getElementById("junkFood").value,
-      foodTye: document.getElementById("foodType").value,
-      studyHr: document.getElementById("studyHr").value,
-      mood: document.getElementById("mood").value,
-      symptoms: document.getElementById("symptoms").value,
-      sleepHr: document.getElementById("sleepHr").value,
-      screenTime: document.getElementById("screentime").value,
-    };
+  //  async function submitDailyData() {
+  //   const data = {
+  //     water: document.getElementById("water").value,
+  //     junkFood: document.getElementById("junkFood").value,
+  //     foodTye: document.getElementById("foodType").value,
+  //     studyHr: document.getElementById("studyHr").value,
+  //     mood: document.getElementById("mood").value,
+  //     symptoms: document.getElementById("symptoms").value,
+  //     sleepHr: document.getElementById("sleepHr").value,
+  //     screenTime: document.getElementById("screentime").value,
+  //   };
 
-    console.log(data);
+  //   console.log(data);
     
 // showLoader();
 
@@ -285,9 +283,9 @@ const res =  await fetch("/update", {
     //   },500);
     // }
 
-     updateUI();
+  //    updateUI();
     
-  }
+  // }
 
 
   

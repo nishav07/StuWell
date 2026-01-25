@@ -45,7 +45,7 @@
 
        
         <div class="bg-orange-200 rounded-2xl p-6 flex flex-col items-center text-center">
-          <i class="fa-solid fa-face-grin-wink text-3xl text-purple-400"></i>
+          <i class="fa-solid fa-face-smile text-3xl text-purple-500"></i>
           <p class="text-2xl font-bold text-gray-800"><%= data ? data.mood : 0 %></p>
           <p class="text-sm text-gray-700">Mood</p>
         </div>
@@ -66,14 +66,14 @@
 
         <div class="bg-purple-200 rounded-2xl p-6 flex flex-col items-center text-center">
           <i class="fa-solid fa-user-doctor text-3xl text-teal-400 "></i>
-          <p class="text-2xl font-bold text-gray-800"><%= data ? data.symptoms : Null %></p>
+          <p class="text-2xl font-bold text-gray-800"><%= data ? data.symptoms : 0 %></p>
           <p class="text-sm text-gray-700">Symptoms</p>
         </div>
 
 
         <div class="bg-green-200 rounded-2xl p-6 flex flex-col items-center text-center">
           <i class="fa-solid fa-bowl-food text-3xl text-fuchsia-400"></i>
-          <p class="text-2xl font-bold text-gray-800"><%= data ? data.foodType : Null %></p>
+          <p class="text-2xl font-bold text-gray-800"><%= data ? data.foodType : 0 %></p>
           <p class="text-sm text-gray-700">contain most</p>
         </div>
 
@@ -96,7 +96,7 @@
       </div>
 
       <p class="text-sm text-gray-600">
-        Your sleep has been consistent this week.
+        Your has been consistent this week.
       </p>
     </div>
 
@@ -107,14 +107,15 @@
 
 
 
-              <!-- components/suggestions.ejs -->
+               <% if (data) { %>
+             
 
 <div class=" mx-auto p-4 md:p-6">
     <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Daily Suggestions</h1>
     
     <div class="space-y-4">
 
-        <!-- ==================== WATER INTAKE SUGGESTIONS ==================== -->
+      
         <% if (data.water < 2) { %>
             <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
                 <i class="fa-solid fa-droplet text-2xl text-red-600 mt-1"></i>
@@ -142,7 +143,7 @@
         <% } %>
 
 
-        <!-- ==================== JUNK FOOD SUGGESTIONS ==================== -->
+      
         <% if (data.junkFood === "yes") { %>
             <div class="bg-orange-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-orange-500">
                 <i class="fa-solid fa-burger text-2xl text-orange-600 mt-1"></i>
@@ -162,7 +163,7 @@
         <% } %>
 
 
-        <!-- ==================== FOOD TYPE SUGGESTIONS ==================== -->
+        
         <% if (data.foodType === "balanced") { %>
             <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
                 <i class="fa-solid fa-utensils text-2xl text-green-600 mt-1"></i>
@@ -198,7 +199,7 @@
         <% } %>
 
 
-        <!-- ==================== STUDY HOURS SUGGESTIONS ==================== -->
+       
         <% if (data.studyHr < 3) { %>
             <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
                 <i class="fa-solid fa-book-open text-2xl text-red-600 mt-1"></i>
@@ -226,7 +227,7 @@
         <% } %>
 
 
-        <!-- ==================== MOOD SUGGESTIONS ==================== -->
+     
         <% if (data.mood === "veryBad" || data.mood === "Bad") { %>
             <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
                 <i class="fa-solid fa-face-frown text-2xl text-red-600 mt-1"></i>
@@ -254,7 +255,7 @@
         <% } %>
 
 
-        <!-- ==================== SYMPTOMS SUGGESTIONS ==================== -->
+
         <% if (data.symptoms === "none") { %>
             <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
                 <i class="fa-solid fa-heart-pulse text-2xl text-green-600 mt-1"></i>
@@ -314,7 +315,7 @@
         <% } %>
 
 
-        <!-- ==================== SLEEP HOURS SUGGESTIONS ==================== -->
+        
         <% if (data.sleepHr < 6) { %>
             <div class="bg-red-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-red-500">
                 <i class="fa-solid fa-bed text-2xl text-red-600 mt-1"></i>
@@ -342,7 +343,7 @@
         <% } %>
 
 
-        <!-- ==================== SCREEN TIME SUGGESTIONS ==================== -->
+        
         <% if (data.screentime < 3) { %>
             <div class="bg-green-100 rounded-xl p-4 flex items-start gap-3 border-l-4 border-green-500">
                 <i class="fa-solid fa-mobile-screen text-2xl text-green-600 mt-1"></i>
@@ -371,6 +372,11 @@
 
     </div>
 </div>
+
+<% } %>
+
+
+
 
               </div>
 
@@ -481,9 +487,9 @@
            <option value="fatigue">fatigue</option>
           <option value="stress">stress</option>
              <option value="anxiety">anxiety</option>
-           <option value="stomach_discomfort">stomach Discomfort</option>
-          <option value="body_pain">body Pain</option>
-           <option value="low_focus">low_focus</option>
+           <option value="stomachDiscomfort">stomach Discomfort</option>
+          <option value="bodyPain">body Pain</option>
+           <option value="lowFocus">low focus</option>
         </select>
 
         <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
