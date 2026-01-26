@@ -1,4 +1,6 @@
 const { GoogleGenAI } = require("@google/genai");
+require("dotenv").config();
+
 
 const ai = new GoogleGenAI({
   apiKey: process.env.API_KEY
@@ -10,7 +12,7 @@ async function generateText(prompt) {
     contents: prompt,
   });
 
-  return response.text;
+  return response;
 }
 
 module.exports = { generateText };
