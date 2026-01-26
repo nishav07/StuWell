@@ -29,11 +29,6 @@ FIELD UNDERSTANDING:
 - sleepHr: total sleep hours
 - screenTime: mobile / screen usage in hours
 
-IMPORTANT FLEXIBILITY RULE:
-- If NEW fields appear in user data (example: exercise, steps, posture, headaches, energyLevel),
-  automatically analyze them
-- Include insights for new fields in ALL relevant sections
-
 ANALYSIS LOGIC:
 - Calculate weekly AVERAGE
 - Detect TREND (consistent / improving / worsening / unstable)

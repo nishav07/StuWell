@@ -1,0 +1,57 @@
+"P" : {
+  "data": [
+    {
+      "weeklySummary": {
+        "waterAvg": "2.2L",
+        "sleepAvg": "7.0h",
+        "screenTimeAvg": "6.75h",
+        "studyAvg": "1.0h",
+        "junkFoodFrequency": "1 out of 4 days reported (Days 5, 6, 7 missing)",
+        "moodTrend": "Unstable; predominantly Good but fluctuates to veryBad on higher study 
+days.",
+        "routineStability": "Low; water intake is declining while screen time is increasing significantly over the reported period."
+      }
+    },
+    {
+      "routineImpact": {
+        "shortTerm": "Rising screen time and low study engagement are causing immediate productivity drops and spikes in anxiety.",
+        "longTerm": "Persistent digital overconsumption and irregular study habits may lead to academic stagnation and chronic mental fatigue.",
+        "focusAndEnergy": "Declining hydration and high screen usage are draining mental resources, making it difficult to maintain consistent focus.",
+        "physicalAndMentalLoad": "Physical symptoms like stomach discomfort and anxiety suggest the body is struggling with inconsistent daily stress and habits."
+      }
+    },
+    {
+      "improvements": {
+        "water": "Increase intake to a steady 3 liters daily to prevent the fatigue currently caused by declining hydration levels.",
+        "sleep": "Maintain the 7-8 hour range consistently to stabilize your mood and improve cognitive recovery after screen sessions.",
+        "screenTime": "Gradually reduce daily mobile usage to under 4 hours to alleviate eye 
+strain and reclaim time for studying.",
+        "food": "Continue prioritizing healthy fats and proteins while avoiding junk food to 
+maintain stable energy and digestion.",
+        "study": "Establish a fixed two-hour daily study window to build consistency and reduce the anxiety of academic pressure.",
+        "mood": "Practice brief mindfulness or breathing exercises when anxiety peaks to maintain the positive mood trend observed early on.",
+        "symptoms": "Track triggers for stomach discomfort to identify if they correlate with specific food types or high screen usage."
+      }
+    },
+    {
+      "progress": {
+        "good": "You maintain a decent sleep average of seven hours and generally avoid excessive junk food, which supports basic physical recovery and energy.",
+        "bad": "Rising screen time reaching eight hours and declining water intake are concerning patterns that likely contribute to your reported anxiety and stress."
+      }
+    },
+    {
+      "riskAssessment": {
+        "level": "moderate",
+        "reason": "Screen time is trending upward while hydration and study hours are inconsistent, accompanied by reported anxiety and stress.",
+        "ifContinued": "Prolonged digital strain and low academic engagement could lead to burnout, chronic eye fatigue, and a decline in performance."
+      }
+    },
+    {
+      "medicalGuidance": {
+        "bloodTest": "optional",
+        "doctorVisit": "optional",
+        "reason": "Symptoms of anxiety and stomach discomfort are noted; if these persist despite improving your routine, consult a professional."
+      }
+    }
+  ]
+}
