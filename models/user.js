@@ -36,9 +36,7 @@ const userSchema = new mongoose.Schema({
     isProfileOk: {
         type: Boolean,
         default: false
-}
-
-    
+} 
 })
 
 const User = mongoose.model("User",userSchema);

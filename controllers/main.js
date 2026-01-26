@@ -1,42 +1,32 @@
 
 const User = require("../models/user");
 const daily = require("../models/dailyInput");
+const weekly = require("../models/weekly");
+
+
+// global functions
+
+function GAP(date1,date2){
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+    const diffinMs = d2 - d1;
+    return Math.floor(diffinMs/(1000 * 60 * 60 * 24));
+}
+
+
+//callBacks
 
 function index(req,res){
     res.render("index.ejs");
 }
-
-// async function dashboard(req,res){
-//     const userID = req.session.user.id;
-//     const user = await User.findById(userID);
-//     console.log("data",!user.isProfileOk);
-//     res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk});
-// }
-
-
-
-// async function components(req,res){
-//     const page = req.params.page;
-//     const userID = req.session.user.id;
-//     const user = await User.findById(userID)
-//     const date = new Date().toISOString().split("T")[0];
-
-//     // const dailyData = await daily.find({userId:String(userID)});
-//     // console.log(dailyData[0].status)
-//     const inputStatus = await daily.find({userId:userID,date:date});
-  
-  
-//     res.render(`components/${page}`,{
-//       user:user,
-      
-//     })
-// }
 
 
 async function dashboard(req, res) {
     const userID = req.session.user.id;
     const user = await User.findById(userID);
     const date = new Date().toISOString().split("T")[0];
+  
+
     
    
     const showProfileModal = !user.isProfileOk;
@@ -55,10 +45,13 @@ async function dashboard(req, res) {
     const dailyData = await daily.find({userId:userID,date:date});
     console.log("daily data",dailyData[0]);
 
+     
+
     res.render("dashboard.ejs", {
         showProfileModal: showProfileModal,
         status: status,
-        data:dailyData[0]
+        data:dailyData[0],
+        
     });
 }
 
@@ -68,7 +61,11 @@ async function components(req, res) {
     const userID = req.session.user.id;
     const user = await User.findById(userID);
     const date = new Date().toISOString().split("T")[0];
-    
+    const weeklyy = await weekly.find({userId:userID}); //weekllyyyyy wala data
+    let weeklyData = null;
+   
+
+
     
     const inputStatus = await daily.find({ userId: userID, date: date });
     const dailyInput = await daily.find({ userId: userID });
@@ -97,6 +94,8 @@ async function components(req, res) {
             $lte: end 
         }
     }).sort({ date: 1 });
+
+    console.log("weeklyyy data",weekData);
     
     const submittedData = weekData.filter(d => d.status === 'submitted');
     const submittedDays = submittedData.length;
@@ -133,11 +132,15 @@ async function components(req, res) {
         ? Object.keys(moodCount).reduce((a, b) => moodCount[a] > moodCount[b] ? a : b)
         : 'neutral';
    
+         if(weeklyy.length == 0){
+        weeklyData = "Is baar ai ko call kiya gyaa haiiii"
+    }
     
     res.render(`components/${page}`, {
         user: user,
         status: status,
         data:dailyData[0],
+        weeklyData:weeklyData,
         IsTsEnough:enoughData,
         weekData: weekData,
         avgWater: avgWater,
@@ -231,6 +234,36 @@ const date = new Date().toISOString().split("T")[0];
   }
 
 }
+
+
+
+// replaced item in case want to seee
+
+// async function dashboard(req,res){
+//     const userID = req.session.user.id;
+//     const user = await User.findById(userID);
+//     console.log("data",!user.isProfileOk);
+//     res.render("dashboard.ejs",{showProfileModal: !user.isProfileOk});
+// }
+
+
+
+// async function components(req,res){
+//     const page = req.params.page;
+//     const userID = req.session.user.id;
+//     const user = await User.findById(userID)
+//     const date = new Date().toISOString().split("T")[0];
+
+//     // const dailyData = await daily.find({userId:String(userID)});
+//     // console.log(dailyData[0].status)
+//     const inputStatus = await daily.find({userId:userID,date:date});
+  
+  
+//     res.render(`components/${page}`,{
+//       user:user,
+      
+//     })
+// }
 
 module.exports = {
     index,
