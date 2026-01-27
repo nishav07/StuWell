@@ -18,6 +18,26 @@ function GAP(date1,date2){
     return Math.floor(diffinMs/(1000 * 60 * 60 * 24));
 }
 
+function normalizeAIData(aiResult) {
+  // already object
+  if (typeof aiResult === "object") return aiResult;
+
+  // string case
+  if (typeof aiResult === "string") {
+    try {
+      return JSON.parse(aiResult); // valid JSON string
+    } catch (e) {
+      // NOT JSON → return safe fallback
+      return {
+        data: [],
+        error: "AI data is not in JSON format"
+      };
+    }
+  }
+
+  // fallback
+  return { data: [] };
+}
 
 //callBacks
 
@@ -143,20 +163,28 @@ async function components(req, res) {
         const dailyL = dailyWalaData.length;
 
          if(weeklyL == 0 && dailyL <= 7 ){
+
             const startDate = dailyWalaData[0].date;
             const endDate = dailyWalaData[dailyWalaData.length - 1].date;
+
             console.log("ai ko call krne time(weekly,daily kak length)",weeklyL,dailyL,startDate,endDate);
             console.log("daily wala data",dailyWalaData);
+
              const p = buildHealthPrompt(dailyWalaData);
              console.log(p)
+
                 const resultOFai = await generateText(p);
                 console.log("ai se aaya hua data:",resultOFai);
+
                 const text = resultOFai.candidates[0].content.parts[0].text;
                 console.log("text wala data", text);
+
                 try {
                     const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:text});
                     await weeklydata.save();
+
                     console.log("data save ho gyaaaaaaaaaaaaaaaaa")
+
                 } catch (error) {
                     console.log("error aaa gya yaawr while uplaoding",error)
                 }
@@ -170,10 +198,14 @@ async function components(req, res) {
         console.log("data already storedddd haiiiiiiiiiiiii bhai samjhaaa")
     }
 
-    //        const latestAnalysis = await weekly.findOne({ 
-    //     userId: userID 
-    // }).sort({ createdAt: -1 })
+           const latestAnalysis = await weekly.findOne({ 
+        userId: userID 
+    }).sort({ createdAt: -1 });
 
+    console.log("lateststt",latestAnalysis.aiResult)
+
+    const finall = JSON.parse(latestAnalysis.aiResult);
+    const cleanAIData = normalizeAIData(latestAnalysis.aiResult);
     // const parsedData = JSON.parse(latestAnalysis.aiResult)
     
     res.render(`components/${page}`, {
@@ -192,7 +224,7 @@ async function components(req, res) {
         mostCommonMood: mostCommonMood,
         startDate: startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-        // aiData:parsedData
+        aiData:cleanAIData
     });
 }
 

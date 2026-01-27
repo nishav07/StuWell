@@ -79,12 +79,10 @@ async function main() {
     console.log("ai se aaya hua data:",result);
     const text = result.candidates[0].content.parts[0].text;
     console.log("text wala data", text)
-// const parsed = JSON.parse(text);
-// console.log("parsedd data ye hai",parsed);
     
 }
 
-// main();
+main();
 
 
 // const res = ai.generateText(prompt(userDataArray));

@@ -6,7 +6,7 @@ PRIMARY GOAL:
 - Analyze the USER'S 7-DAY ROUTINE PATTERN
 - Explain the IMPACT of this routine on health, focus, mood, and daily performance
 - Identify FUTURE RISK if the same routine continues
-- Detect early warning signs (non-diagnostic)
+- Detect early warning signs 
 
 STRICT RULES:
 - Use ONLY the provided user data
@@ -14,10 +14,19 @@ STRICT RULES:
 - Do NOT assume missing values
 - If a field is missing or null, clearly mention it
 - Ignore technical fields like _id, id, userId, createdAt, version
-- NO medical diagnosis
-- NO medicines or supplements
 - Be calm, honest, student-safe, and practical
-- Output MUST be valid JSON only (no markdown, no extra text)
+
+STRICT OUTPUT RULES:
+- Output ONLY valid JSON
+- Use double quotes for all keys and string values
+- No JavaScript syntax
+- No comments
+- No markdown
+- No extra text before or after JSON
+- If data is missing, use null
+
+The response MUST be parsable using JSON.parse().
+
 
 FIELD UNDERSTANDING:
 - water: litres of water per day
@@ -67,64 +76,87 @@ TASKS:
 6. Suggest routine corrections
 7. Decide medical guidance level (optional only)
 
-STRICT OUTPUT FORMAT:
+IMPORTANT:
+Return a JSON
+Example format:
 {
-  "data": [
+  data: [
     {
-      "weeklySummary": {
-        "waterAvg": "",
-        "sleepAvg": "",
-        "screenTimeAvg": "",
-        "studyAvg": "",
-        "junkFoodFrequency": "",
-        "moodTrend": "",
-        "routineStability": ""
-      }
-    },
-    {
-      "routineImpact": {
-        "shortTerm": "",
-        "longTerm": "",
-        "focusAndEnergy": "",
-        "physicalAndMentalLoad": ""
-      }
-    },
-    {
-      "improvements": {
-        "water": "",
-        "sleep": "",
-        "screenTime": "",
-        "food": "",
-        "study": "",
-        "mood": "",
-        "symptoms": ""
-      }
-    },
-    {
-      "progress": {
-        "good": [],
-        "bad": []
-      }
-    },
-    {
-      "riskAssessment": {
-        "level": "low | moderate | high",
-        "reason": "",
-        "ifContinued": ""
-      }
-    },
-    {
-      "medicalGuidance": {
-        "bloodTest": "required | not_required | optional",
-        "doctorVisit": "required | not_required | optional",
-        "reason": ""
+      weeklySummary: {
+        waterAvg: "",
+        sleepAvg: "",
+        screenTimeAvg: "",
+        studyAvg: "",
+        junkFoodFrequency: "",
+        moodTrend: "",
+        routineStability: ""
       }
     }
   ]
 }
 
+STRICT OUTPUT FORMAT:
+{
+  data: [
+    {
+      weeklySummary: {
+        waterAvg: "",
+        sleepAvg: "",
+        screenTimeAvg: "",
+        studyAvg: "",
+        junkFoodFrequency: "",
+        moodTrend: "",
+        routineStability: ""
+      }
+    },
+    {
+      routineImpact: {
+        shortTerm: "",
+        longTerm: "",
+        focusAndEnergy: "",
+        physicalAndMentalLoad: ""
+      }
+    },
+    {
+      improvements: {
+        water: "",
+        sleep: "",
+        screenTime: "",
+        food: "",
+        study: "",
+        mood: "",
+        symptoms: ""
+      }
+    },
+    {
+      progress: {
+        good: [],
+        bad: []
+      }
+    },
+    {
+      riskAssessment: {
+        level: "low | moderate | high",
+        reason: "",
+        ifContinued: ""
+      }
+    },
+    {
+      medicalGuidance: {
+        bloodTest: "required | not_required | optional",
+        doctorVisit: "required | not_required | optional",
+        reason: ""
+      }
+    }
+  ]
+}
+
+FINAL CHECK:
+If the output requires JSON.parse, it is WRONG.
+The output must be directly usable as a JavaScript object.
 `;
 }
 
 module.exports = { buildHealthPrompt };
+
 
