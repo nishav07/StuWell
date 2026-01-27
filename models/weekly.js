@@ -10,8 +10,8 @@ const weeklyAnalysisSchema = new mongoose.Schema({
   weekEnd: String,     
 
   aiResult: {
-    type: Object,      
-    required: true
+    type: mongoose.Schema.Types.Mixed,
+  required: true
   },
 
   createdAt: {

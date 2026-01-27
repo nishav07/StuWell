@@ -84,7 +84,7 @@ async function main() {
     
 }
 
-main();
+// main();
 
 
 // const res = ai.generateText(prompt(userDataArray));

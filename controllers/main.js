@@ -1,4 +1,9 @@
 
+const gemeni = require("@google/genai");
+const  { buildHealthPrompt } = require("../config/prompt");
+const { generateText } = require("../config/ai");
+require("dotenv").config();
+
 const User = require("../models/user");
 const daily = require("../models/dailyInput");
 const weekly = require("../models/weekly");
@@ -131,8 +136,16 @@ async function components(req, res) {
     const mostCommonMood = Object.keys(moodCount).length > 0
         ? Object.keys(moodCount).reduce((a, b) => moodCount[a] > moodCount[b] ? a : b)
         : 'neutral';
+        
    
-         if(weeklyy.length == 0){
+        const dailyWalaData = await daily.find({userId:userID});
+        const weeklyL = weeklyy.length;
+        const dailyL = dailyWalaData.length;
+
+         if(weeklyL == 0 && dailyL >= 7 ){
+
+            console.log("ai ko call kren time(weekly,daily kak length)",weeklyL,dailyL);
+            
         weeklyData = "Is baar ai ko call kiya gyaa haiiii"
     }
     
