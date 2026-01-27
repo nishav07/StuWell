@@ -142,9 +142,16 @@ async function components(req, res) {
         const weeklyL = weeklyy.length;
         const dailyL = dailyWalaData.length;
 
-         if(weeklyL == 0 && dailyL >= 7 ){
+         if(weeklyL == 0 && dailyL <= 7 ){
 
             console.log("ai ko call kren time(weekly,daily kak length)",weeklyL,dailyL);
+            // console.log("daily wala data",dailyWalaData);
+             const p = buildHealthPrompt(dailyWalaData);
+            //  console.log(p)
+                const resultOFai = await generateText(p);
+                console.log("ai se aaya hua data:",resultOFai);
+                const text = resultOFai.candidates[0].content.parts[0].text;
+                console.log("text wala data", text)
             
         weeklyData = "Is baar ai ko call kiya gyaa haiiii"
     }
