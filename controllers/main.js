@@ -178,9 +178,10 @@ async function components(req, res) {
 
                 const text = resultOFai.candidates[0].content.parts[0].text;
                 console.log("text wala data", text);
+                const parsedText = JSON.parse(text);
 
                 try {
-                    const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:text});
+                    const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:parsedText});
                     await weeklydata.save();
 
                     console.log("data save ho gyaaaaaaaaaaaaaaaaa")
