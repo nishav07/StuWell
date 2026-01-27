@@ -143,18 +143,38 @@ async function components(req, res) {
         const dailyL = dailyWalaData.length;
 
          if(weeklyL == 0 && dailyL <= 7 ){
-
-            console.log("ai ko call kren time(weekly,daily kak length)",weeklyL,dailyL);
-            // console.log("daily wala data",dailyWalaData);
+            const startDate = dailyWalaData[0].date;
+            const endDate = dailyWalaData[dailyWalaData.length - 1].date;
+            console.log("ai ko call krne time(weekly,daily kak length)",weeklyL,dailyL,startDate,endDate);
+            console.log("daily wala data",dailyWalaData);
              const p = buildHealthPrompt(dailyWalaData);
-            //  console.log(p)
+             console.log(p)
                 const resultOFai = await generateText(p);
                 console.log("ai se aaya hua data:",resultOFai);
                 const text = resultOFai.candidates[0].content.parts[0].text;
-                console.log("text wala data", text)
+                console.log("text wala data", text);
+                try {
+                    const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:text});
+                    await weeklydata.save();
+                    console.log("data save ho gyaaaaaaaaaaaaaaaaa")
+                } catch (error) {
+                    console.log("error aaa gya yaawr while uplaoding",error)
+                }
+
+         
+
+
             
         weeklyData = "Is baar ai ko call kiya gyaa haiiii"
+    } else {
+        console.log("data already storedddd haiiiiiiiiiiiii bhai samjhaaa")
     }
+
+    //        const latestAnalysis = await weekly.findOne({ 
+    //     userId: userID 
+    // }).sort({ createdAt: -1 })
+
+    // const parsedData = JSON.parse(latestAnalysis.aiResult)
     
     res.render(`components/${page}`, {
         user: user,
@@ -171,7 +191,8 @@ async function components(req, res) {
         junkFoodDays: junkFoodDays,
         mostCommonMood: mostCommonMood,
         startDate: startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-        endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        // aiData:parsedData
     });
 }
 
