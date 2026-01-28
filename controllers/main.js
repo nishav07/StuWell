@@ -179,16 +179,19 @@ async function components(req, res) {
                 const text = resultOFai.candidates[0].content.parts[0].text;
                 console.log("text wala data", text);
                 const parsedText = JSON.parse(text);
+                console.log("parsee text",parsedText);
 
-                try {
-                    const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:parsedText});
-                    await weeklydata.save();
+                
 
-                    console.log("data save ho gyaaaaaaaaaaaaaaaaa")
+                // try {
+                //     const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:parsedText});
+                //     await weeklydata.save();
 
-                } catch (error) {
-                    console.log("error aaa gya yaawr while uplaoding",error)
-                }
+                //     console.log("data save ho gyaaaaaaaaaaaaaaaaa")
+
+                // } catch (error) {
+                //     console.log("error aaa gya yaawr while uplaoding",error)
+                // }
 
          
 
@@ -199,14 +202,14 @@ async function components(req, res) {
         console.log("data already storedddd haiiiiiiiiiiiii bhai samjhaaa")
     }
 
-           const latestAnalysis = await weekly.findOne({ 
-        userId: userID 
-    }).sort({ createdAt: -1 });
+    //        const latestAnalysis = await weekly.findOne({ 
+    //     userId: userID 
+    // }).sort({ createdAt: -1 });
 
-    console.log("lateststt",latestAnalysis.aiResult)
+    // console.log("lateststt",latestAnalysis.aiResult)
 
-    const finall = JSON.parse(latestAnalysis.aiResult);
-    const cleanAIData = normalizeAIData(latestAnalysis.aiResult);
+    // const finall = JSON.parse(latestAnalysis.aiResult);
+    // const cleanAIData = normalizeAIData(latestAnalysis.aiResult);
     // const parsedData = JSON.parse(latestAnalysis.aiResult)
     
     res.render(`components/${page}`, {
@@ -225,7 +228,7 @@ async function components(req, res) {
         mostCommonMood: mostCommonMood,
         startDate: startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-        aiData:cleanAIData
+        // aiData:cleanAIData
     });
 }
 
