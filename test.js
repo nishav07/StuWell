@@ -73,16 +73,16 @@ const data = [
 // }
 
 
-async function main() {
-    const p = buildHealthPrompt(data);
-    const result = await generateText(p);
-    console.log("ai se aaya hua data:",result);
-    const text = result.candidates[0].content.parts[0].text;
-    console.log("text wala data", text)
+// async function main() {
+//     const p = buildHealthPrompt(data);
+//     const result = await generateText(p);
+//     console.log("ai se aaya hua data:",result);
+//     const text = result.candidates[0].content.parts[0].text;
+//     console.log("text wala data", text)
     
-}
+// }
 
-main();
+// main();
 
 
 // const res = ai.generateText(prompt(userDataArray));

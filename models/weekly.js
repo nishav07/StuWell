@@ -9,8 +9,7 @@ const weeklyAnalysisSchema = new mongoose.Schema({
   weekStart: String,   
   weekEnd: String,     
 
-  aiResult: {
-  weeklySummary: {
+ weeklySummary: {
     waterAvg: String,
     sleepAvg: String,
     screenTimeAvg: String,
@@ -19,12 +18,14 @@ const weeklyAnalysisSchema = new mongoose.Schema({
     moodTrend: String,
     routineStability: String
   },
+  
   routineImpact: {
     shortTerm: String,
     longTerm: String,
     focusAndEnergy: String,
     physicalAndMentalLoad: String
   },
+  
   improvements: {
     water: String,
     sleep: String,
@@ -34,31 +35,24 @@ const weeklyAnalysisSchema = new mongoose.Schema({
     mood: String,
     symptoms: String
   },
+  
   progress: {
     good: [String],
     bad: [String]
   },
+  
   riskAssessment: {
-    level: {
-      type: String,
-      enum: ["low", "moderate", "high"]
-    },
+    level: String,
     reason: String,
     ifContinued: String
   },
+  
   medicalGuidance: {
-    bloodTest: {
-      type: String,
-      enum: ["required", "not_required", "optional"]
-    },
-    doctorVisit: {
-      type: String,
-      enum: ["required", "not_required", "optional"]
-    },
+    bloodTest: String,
+    doctorVisit: String,
     reason: String
-  }
-},
-
+  },
+  
   createdAt: {
     type: Date,
     default: Date.now

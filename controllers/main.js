@@ -8,6 +8,7 @@ const User = require("../models/user");
 const daily = require("../models/dailyInput");
 const weekly = require("../models/weekly");
 
+const AajKaDin = new Date().toISOString().split("T")[0];
 
 // global functions
 
@@ -162,7 +163,7 @@ async function components(req, res) {
         const weeklyL = weeklyy.length;
         const dailyL = dailyWalaData.length;
 
-         if(weeklyL == 0 && dailyL <= 7 ){
+         if(weeklyL == 0 && dailyL >= 7 ){
 
             const startDate = dailyWalaData[0].date;
             const endDate = dailyWalaData[dailyWalaData.length - 1].date;
@@ -173,28 +174,42 @@ async function components(req, res) {
              const p = buildHealthPrompt(dailyWalaData);
              console.log(p)
 
-                const resultOFai = await generateText(p);
+               try {
+                
+                 const resultOFai = await generateText(p);
                 console.log("ai se aaya hua data:",resultOFai);
 
                 const text = resultOFai.candidates[0].content.parts[0].text;
-                console.log("text wala data", text);
+                console.log("text wala data", text,typeof text);
                 const parsedText = JSON.parse(text);
-                console.log("parsee text",parsedText);
+                console.log("parsee text",parsedText,typeof parsedText);
+                console.log(parsedText.data[0].weeklySummary,  parsedText.data[1].routineImpact, parsedText.data[2].improvements, parsedText.data[3].progress,parsedText.data[4].riskAssessment,parsedText.data[5].medicalGuidance);
 
+                 const reportData = {
+                            userId:userID,
+                            weekStart:startDate,
+                            weekEnd:endDate,
+                            weeklySummary: parsedText.data[0].weeklySummary,
+                            routineImpact: parsedText.data[1].routineImpact,
+                            improvements: parsedText.data[2].improvements,
+                            progress: parsedText.data[3].progress,
+                            riskAssessment: parsedText.data[4].riskAssessment,
+                            medicalGuidance: parsedText.data[5].medicalGuidance
+                            };
+
+                            const weeklydata = new weekly(reportData);
+                            await weeklydata.save();
+
+                            console.log("data saveee ho gyaaa console.checkkkkk rk")
+
+               } catch (error) {
+
+                console.log("error aa gya sirrr",error)
                 
+               }
 
-                // try {
-                //     const weeklydata = new weekly({ userId:userID,weekStart:startDate,weekEnd:endDate,aiResult:parsedText});
-                //     await weeklydata.save();
 
-                //     console.log("data save ho gyaaaaaaaaaaaaaaaaa")
-
-                // } catch (error) {
-                //     console.log("error aaa gya yaawr while uplaoding",error)
-                // }
-
-         
-
+  
 
             
         weeklyData = "Is baar ai ko call kiya gyaa haiiii"
@@ -202,15 +217,27 @@ async function components(req, res) {
         console.log("data already storedddd haiiiiiiiiiiiii bhai samjhaaa")
     }
 
-    //        const latestAnalysis = await weekly.findOne({ 
-    //     userId: userID 
-    // }).sort({ createdAt: -1 });
 
-    // console.log("lateststt",latestAnalysis.aiResult)
+    
 
-    // const finall = JSON.parse(latestAnalysis.aiResult);
-    // const cleanAIData = normalizeAIData(latestAnalysis.aiResult);
-    // const parsedData = JSON.parse(latestAnalysis.aiResult)
+           const latestAnalysis = await weekly.findOne({ 
+            userId: userID 
+           }).sort({ createdAt: -1 });
+
+           const lastDate = latestAnalysis.weekEnd;
+           console.log(lastDate,"weekend");
+           const gapBetween = GAP(lastDate,AajKaDin);
+           console.log(gapBetween,"gapBetweeenn");
+
+           if(gapBetween >= 7 && weeklyL !==  0 ){
+            console.log("ab dursi baar ai ko call kiyaa jaayegaa");
+            
+           }
+
+
+    console.log("lateststt",latestAnalysis);
+
+ 
     
     res.render(`components/${page}`, {
         user: user,
@@ -228,7 +255,7 @@ async function components(req, res) {
         mostCommonMood: mostCommonMood,
         startDate: startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-        // aiData:cleanAIData
+        aidata:latestAnalysis
     });
 }
 
