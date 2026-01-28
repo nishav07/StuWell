@@ -66,7 +66,7 @@
                                 <p class="font-semibold text-gray-800 text-sm"><%= new Date(day.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) %></p>
                                 <% if (day.status === 'submitted') { %>
                                     <span class="text-xs text-green-600 flex items-center gap-1">
-                                        <i class="fa-solid fa-circle-check"></i> Tracked
+                                        <i class="fa-solid fa-circle-check text"></i> Tracked
                                     </span>
                                 <% } else { %>
                                     <span class="text-xs text-red-600 flex items-center gap-1">
@@ -80,19 +80,19 @@
                     <% if (day.status === 'submitted') { %>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
                             <div class="flex items-center gap-1">
-                                <i class="fa-solid fa-droplet text-blue-500"></i>
+                                <i class="fa-solid fa-droplet text-blue-500 text-xl"></i>
                                 <span class="text-gray-700"><%= day.water %>L</span>
                             </div>
                             <div class="flex items-center gap-1">
-                                <i class="fa-solid fa-moon text-green-500"></i>
+                                <i class="fa-solid fa-moon text-green-500 text-xl"></i>
                                 <span class="text-gray-700"><%= day.sleepHr %>h</span>
                             </div>
                             <div class="flex items-center gap-1">
-                                <i class="fa-solid fa-book-open text-teal-500"></i>
+                                <i class="fa-solid fa-book-open text-teal-500 text-xl"></i>
                                 <span class="text-gray-700"><%= day.studyHr %>h</span>
                             </div>
                             <div class="flex items-center gap-1">
-                                <i class="fa-solid fa-mobile-screen text-purple-500"></i>
+                                <i class="fa-solid fa-mobile-screen text-purple-500 text-xl"></i>
                                 <span class="text-gray-700"><%= day.screentime %>h</span>
                             </div>
                         </div>

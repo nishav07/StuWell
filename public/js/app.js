@@ -75,21 +75,24 @@ profileBtn.addEventListener("click", () => {
 //--------------------------- single page application code --------------------------------------------------------------------------
 
 function loadPage(page) {
-  showLoader()
+  showLoader();
     fetch(`/components/${page}`)
       .then(res => res.text())
       .then(html => {
-        hideLoader()
+        hideLoader();
         document.getElementById("content").innerHTML = html;
         initPage(page);
       });
   }
 
   function initPage(p){
+     showLoader();
     if(p == "home"){
       funx();
+       hideLoader();
     }
 }
+
 
 
 
