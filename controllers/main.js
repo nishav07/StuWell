@@ -9,6 +9,7 @@ const daily = require("../models/dailyInput");
 const weekly = require("../models/weekly");
 
 const AajKaDin = new Date().toISOString().split("T")[0];
+let APIERR = false;
 
 // global functions
 
@@ -210,14 +211,11 @@ async function components(req, res) {
 
                } catch (error) {
 
+                APIERR = true;
                 console.log("error aa gya sirrr",error)
                 
                }
 
-
-  
-
-            
         weeklyData = "Is baar ai ko call kiya gyaa haiiii"
     } else {
         console.log("data already storedddd haiiiiiiiiiiiii bhai samjhaaa")
@@ -225,7 +223,7 @@ async function components(req, res) {
 
 
     let lastDate = null;
-let gapBetween = null;
+    let gapBetween = null;
     
 
            const latest = await weekly.findOne({ 
@@ -235,16 +233,12 @@ let gapBetween = null;
            if (latest) {
             lastDate = latest.weekEnd;
             gapBetween = GAP(lastDate,AajKaDin);
-            console.log("error nahi h abhii")
+            console.log("error nahi h abhii and gap ye haii",gapBetween)
  
 } else {
    console.log("No weekly analysis yet (safe case)");
   
 }
-
-
-
-            
            console.log(lastDate,"weekend");
             
            console.log(gapBetween,"gapBetweeenn");
@@ -256,17 +250,17 @@ let gapBetween = null;
                                   })
                                   .sort({ date: -1 })
                                   .limit(7)
-                                  .sort({ date: 1 });
+                                  last7DaysData.reverse();
             console.log(last7DaysData,"last7days ka data haiiiiii");
 
-            const weekStart = last7DaysData[0].date;
+            if (last7DaysData.length === 7) {
+              const weekStart = last7DaysData[0].date;
 const weekEnd = last7DaysData[last7DaysData.length - 1].date;
 
 
              const p2 = buildHealthPrompt(last7DaysData);
              console.log("prompt two",p2)
 
-///////////////////////////////////////////////////////
 
              try {
                 
@@ -297,13 +291,16 @@ const weekEnd = last7DaysData[last7DaysData.length - 1].date;
                             console.log("data saveee ho gyaaa console.checkkkkk rk")
 
                } catch (error) {
-
+                APIERR = true;
                 console.log("error aa gya sirrr",error)
                 
                }
+    
+  } else {
+    console.log("Gap OK but 7-day data incomplete, skipping AI");
+  }
 
-
-       ////////////////////////////////////////////////////////second data logic////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////second data logic////////////////////////////////////////////////////////
 
             console.log("ab dursi baar ai ko call kiyaa jaayegaa");
             
@@ -335,7 +332,8 @@ const weekEnd = last7DaysData[last7DaysData.length - 1].date;
         mostCommonMood: mostCommonMood,
         startDate: startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         endDate: endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-        aidata:latestAnalysis
+        aidata:latestAnalysis,
+        APIERR:APIERR
     });
 }
 

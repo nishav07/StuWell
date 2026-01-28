@@ -75,9 +75,11 @@ profileBtn.addEventListener("click", () => {
 //--------------------------- single page application code --------------------------------------------------------------------------
 
 function loadPage(page) {
+  showLoader()
     fetch(`/components/${page}`)
       .then(res => res.text())
       .then(html => {
+        hideLoader()
         document.getElementById("content").innerHTML = html;
         initPage(page);
       });

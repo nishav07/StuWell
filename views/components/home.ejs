@@ -7,9 +7,10 @@
                </div>
                   <% if(status !== "submitted"){ %>
                     <button  class="p-2 px-6  text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300">Starts Daily Check-in</button>
-                    <% } %>
+                    <% } else { %>
                     <button  class="p-2 px-6  text-xl bg-amber-500 rounded-3xl text-white hover:bg-amber-300" check-stats>Get Suggestions</button>
                 </div>
+                <% } %>
 
 
                 <div id="snap-shot-section" class="px-2 py-2 md:px-5 md:py-5">
@@ -424,9 +425,10 @@
     <div id="dailyInput" class="relative overflow-hidden h-[220px] p-4 text-teal-400">
 
       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300">
+        <h1 class="text-gray-400 text-md">Enter data based on your yesterday</h2>
         <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3">Water Intake</h2>
-        <input id="water" type="number"
+        <input id="water" type="number" placeholder="Water in L"
           class="w-full p-4 mb-4   rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none ">
         <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
@@ -474,7 +476,7 @@
       <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
         <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">Study hour</h2>
-        <input id="studyHr" type="number" max="300"
+        <input id="studyHr" type="number" placeholder="in hours" max="300"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
         <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
@@ -510,7 +512,7 @@
        <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
         <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
         <h2 class="text-lg font-semibold mb-3 p-2">sleep Hour</h2>
-        <input id="sleepHr" type="number" max="300"
+        <input id="sleepHr" type="number" placeholder="in hours" max="300"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
         <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
@@ -522,8 +524,8 @@
 
        <div class="daily absolute inset-0 translate-x-full opacity-0 transition-all duration-300 p-2">
         <button onclick="DbackStep()" class="text-sm mb-2 text-teal-500 hover:text-teal-300">← Back</button>
-        <h2 class="text-lg font-semibold mb-3 p-2">Screem Time</h2>
-        <input id="screentime" type="number" max="300"
+        <h2 class="text-lg font-semibold mb-3 p-2">Screen Time</h2>
+        <input id="screentime" type="number" placeholder="in hours" max="300"
           class="w-full p-3 rounded-lg border border-slate-300
                  focus:ring-2 focus:ring-teal-400 outline-none mb-4">
         <button onclick="DnextStep()" class="w-full bg-teal-500 hover:bg-teal-600
