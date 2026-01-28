@@ -158,12 +158,18 @@ async function components(req, res) {
         ? Object.keys(moodCount).reduce((a, b) => moodCount[a] > moodCount[b] ? a : b)
         : 'neutral';
         
+        
    
-        const dailyWalaData = await daily.find({userId:userID});
+       const dailyWalaData = await daily
+  .find({ userId: userID, status: "submitted" })
+  .sort({ date: 1 });
+
+
+
         const weeklyL = weeklyy.length;
         const dailyL = dailyWalaData.length;
 
-         if(weeklyL == 0 && dailyL >= 7 ){
+         if(weeklyL == 0 && dailyL >= 7 ){ // first checkpointttttttttttttttttttttt
 
             const startDate = dailyWalaData[0].date;
             const endDate = dailyWalaData[dailyWalaData.length - 1].date;
@@ -218,22 +224,96 @@ async function components(req, res) {
     }
 
 
+    let lastDate = null;
+let gapBetween = null;
     
 
-           const latestAnalysis = await weekly.findOne({ 
+           const latest = await weekly.findOne({ 
             userId: userID 
            }).sort({ createdAt: -1 });
 
-           const lastDate = latestAnalysis.weekEnd;
+           if (latest) {
+            lastDate = latest.weekEnd;
+            gapBetween = GAP(lastDate,AajKaDin);
+            console.log("error nahi h abhii")
+ 
+} else {
+   console.log("No weekly analysis yet (safe case)");
+  
+}
+
+
+
+            
            console.log(lastDate,"weekend");
-           const gapBetween = GAP(lastDate,AajKaDin);
+            
            console.log(gapBetween,"gapBetweeenn");
 
-           if(gapBetween >= 7 && weeklyL !==  0 ){
+           if(gapBetween !== null && gapBetween >= 7){
+            const last7DaysData = await daily.find({
+                                    userId: userID,
+                                    status: "submitted"
+                                  })
+                                  .sort({ date: -1 })
+                                  .limit(7)
+                                  .sort({ date: 1 });
+            console.log(last7DaysData,"last7days ka data haiiiiii");
+
+            const weekStart = last7DaysData[0].date;
+const weekEnd = last7DaysData[last7DaysData.length - 1].date;
+
+
+             const p2 = buildHealthPrompt(last7DaysData);
+             console.log("prompt two",p2)
+
+///////////////////////////////////////////////////////
+
+             try {
+                
+                 const resultOFai2 = await generateText(p2);
+                console.log("ai se aaya hua data:",resultOFai2);
+
+                const text2 = resultOFai2.candidates[0].content.parts[0].text;
+                console.log("text wala data two", text2,typeof text2);
+                const parsedText2 = JSON.parse(text2);
+                console.log("parsee text twooo",parsedText2,typeof parsedText2);
+                console.log(parsedText2.data[0].weeklySummary,  parsedText2.data[1].routineImpact, parsedText2.data[2].improvements, parsedText2.data[3].progress,parsedText2.data[4].riskAssessment,parsedText2.data[5].medicalGuidance);
+
+                 const reportData2 = {
+                            userId:userID,
+                            weekStart:weekStart,
+                            weekEnd:weekEnd,
+                            weeklySummary: parsedText2.data[0].weeklySummary,
+                            routineImpact: parsedText2.data[1].routineImpact,
+                            improvements: parsedText2.data[2].improvements,
+                            progress: parsedText2.data[3].progress,
+                            riskAssessment: parsedText2.data[4].riskAssessment,
+                            medicalGuidance: parsedText2.data[5].medicalGuidance
+                            };
+
+                            const weeklydata2 = new weekly(reportData2);
+                            await weeklydata2.save();
+
+                            console.log("data saveee ho gyaaa console.checkkkkk rk")
+
+               } catch (error) {
+
+                console.log("error aa gya sirrr",error)
+                
+               }
+
+
+       ////////////////////////////////////////////////////////second data logic////////////////////////////////////////////////////////
+
             console.log("ab dursi baar ai ko call kiyaa jaayegaa");
             
            }
 
+
+
+            const latestAnalysis = await weekly.findOne({ 
+            userId: userID 
+           }).sort({ createdAt: -1 });
 
     console.log("lateststt",latestAnalysis);
 
