@@ -1,17 +1,18 @@
  document.addEventListener("click", (e) => {
   if (e.target.closest("[check-stats]")) reminder(e);
 
-  if(e.target.closest("[check-in]")) showCard(e);
+  // if(e.target.closest("[check-in]")) showCard(e);
 });
 
 
-function showCard(e){
-  const btn = e.target.closest("[check-in]");
-  if(!btn) return;
+// function showCard(e){
+//   const btn = e.target.closest("[check-in]");
+//   if(!btn) return;
 
-  console.log("button dba hai")
+//   console.log("button dba hai")
   
-}
+  
+// }
  
 function reminder(e){
   const btn = e.target.closest("[check-stats]");

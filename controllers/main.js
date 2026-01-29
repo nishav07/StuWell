@@ -1,4 +1,3 @@
-
 const gemeni = require("@google/genai");
 const  { buildHealthPrompt } = require("../config/prompt");
 const { generateText } = require("../config/ai");
@@ -53,9 +52,6 @@ async function dashboard(req, res) {
     const user = await User.findById(userID);
     const date = new Date().toISOString().split("T")[0];
   
-
-    
-   
     const showProfileModal = !user.isProfileOk;
     
    
@@ -72,13 +68,11 @@ async function dashboard(req, res) {
     const dailyData = await daily.find({userId:userID,date:date});
     console.log("daily data",dailyData[0]);
 
-     
 
     res.render("dashboard.ejs", {
         showProfileModal: showProfileModal,
         status: status,
         data:dailyData[0],
-        
     });
 }
 
@@ -91,7 +85,6 @@ async function components(req, res) {
     const weeklyy = await weekly.find({userId:userID}); //weekllyyyyy wala data
     let weeklyData = null;
    
-
 
     
     const inputStatus = await daily.find({ userId: userID, date: date });
