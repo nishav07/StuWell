@@ -22,9 +22,16 @@
 
         <main id="main-content" class="bg-[url(/img/hero-img.jpg)] bg-cover h-220 md:h-150 px-4 md:px-30 md:flex md:justify-between md:items-center">
             <div id="image-section" class="hidden md:flex md:items-center md:justify-center">
-                <div id="image" class="md:w-full md:p-16">
-                    <img src="/img/hero-img.svg" alt="IMG" class="">
-                </div>
+                <div
+                        id="hero-img"
+                        class="
+                            hidden md:flex md:h-100
+                            motion-safe:animate-[bounce_4s_ease-in-out_infinite]
+                            translate-y-1
+                        "
+                        >
+                        <img src="/img/auth-img.png" alt="IMG">
+                        </div>
             </div>
             <div id="auth-section" class="min-h-full py-6 flex items-center justify-center md:w-1/2">
                 <div id="login-container" class="w-full px-4 ">
@@ -45,7 +52,7 @@
                         >
                         <button class="h-20 w-full px-4 text-3xl font-medium bg-amber-500 rounded-3xl text-white hover:bg-amber-300">Login</button>
 
-                            <p class="font-mono text-xl">Don't have an account? <span id="signup" class="text-amber-600 cursor-pointer">Signup</span></p>
+                            <p class="font-mono text-xl">Don't have an account? <span id="signup" class="text-amber-800 cursor-pointer">Signup</span></p>
                     </form>
 
                 </div>
@@ -73,7 +80,7 @@
                         >
                         <button class="h-20 w-full px-4 text-3xl font-medium bg-amber-500 rounded-3xl text-white hover:bg-amber-300">Signup</button>
 
-                            <p class="font-mono text-xl">Already have an account? <span id="login" class="text-amber-600 cursor-pointer">Login</span></p>
+                            <p class="font-mono text-xl">Already have an account? <span id="login" class="text-amber-800 cursor-pointer">Login</span></p>
                     </form>
                 </div>
             </div>
