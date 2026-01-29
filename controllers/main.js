@@ -163,7 +163,7 @@ async function components(req, res) {
         const weeklyL = weeklyy.length;
         const dailyL = dailyWalaData.length;
 
-         if(weeklyL == 0 && dailyL >= 2 ){ // first checkpointttttttttttttttttttttt
+         if(weeklyL == 0 && dailyL >= 1 ){ // first checkpointttttttttttttttttttttt
 
             const startDate = dailyWalaData[0].date;
             const endDate = dailyWalaData[dailyWalaData.length - 1].date;

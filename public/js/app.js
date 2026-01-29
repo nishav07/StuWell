@@ -1,18 +1,16 @@
  document.addEventListener("click", (e) => {
   if (e.target.closest("[check-stats]")) reminder(e);
 
-  // if(e.target.closest("[check-in]")) showCard(e);
+  if(e.target.closest("[check-in]")) showCard(e);
 });
 
 
-// function showCard(e){
-//   const btn = e.target.closest("[check-in]");
-//   if(!btn) return;
+function showCard(e){
+  const btn = e.target.closest("[check-in]");
+  if(!btn) return;
 
-//   console.log("button dba hai")
-  
-  
-// }
+  location.reload(); 
+}
  
 function reminder(e){
   const btn = e.target.closest("[check-stats]");
@@ -85,24 +83,6 @@ profileBtn.addEventListener("click", () => {
 
 //--------------------------- single page application code --------------------------------------------------------------------------
 
-// function loadPage(page) {
-//   showLoader();
-//     fetch(`/components/${page}`)
-//       .then(res => res.text())
-//       .then(html => {
-//         hideLoader();
-//         document.getElementById("content").innerHTML = html;
-//         initPage(page);
-//       });
-//   }
-
-//   function initPage(p){
-//      showLoader();
-//     if(p == "home"){
-//       funx();
-//        hideLoader();
-//     }
-// }
 
 
 
@@ -189,9 +169,6 @@ function initProfileModal(){
   updateUI();
 }
 
-  // let currentStep = 0;
-  // const steps = document.querySelectorAll("#steps .step");
-  // const progress = document.getElementById("progress");
 
   function updateUI() {
     steps.forEach((step, index) => {
@@ -435,6 +412,8 @@ const res =  await fetch("/update", {
   function DcloseProfileModal() {
     document.getElementById("D-profile-modal-overlay").remove();
   }
+
+
 
 
     async function submitDailyData() {
