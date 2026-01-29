@@ -9,7 +9,7 @@ const sessionConfig = session(
   saveUninitialized: false,  
   
   store: MongoStore.create({
-    mongoUrl:process.env.MONGO_URL,
+    mongoUrl:process.env.ATLAS_URL,
     collection:"sessions",
     ttl: 60 * 60 * 24 * 30
   }),

@@ -199,6 +199,7 @@ async function components(req, res) {
 
                             const weeklydata = new weekly(reportData);
                             await weeklydata.save();
+                            APIERR = false;
 
                             console.log("data saveee ho gyaaa console.checkkkkk rk")
 
@@ -224,6 +225,7 @@ async function components(req, res) {
            }).sort({ createdAt: -1 });
 
            if (latest) {
+            APIERR = false;
             lastDate = latest.weekEnd;
             gapBetween = GAP(lastDate,AajKaDin);
             console.log("error nahi h abhii and gap ye haii",gapBetween)
@@ -280,7 +282,7 @@ const weekEnd = last7DaysData[last7DaysData.length - 1].date;
 
                             const weeklydata2 = new weekly(reportData2);
                             await weeklydata2.save();
-
+                            APIERR = false;
                             console.log("data saveee ho gyaaa console.checkkkkk rk")
 
                } catch (error) {
@@ -306,6 +308,10 @@ const weekEnd = last7DaysData[last7DaysData.length - 1].date;
            }).sort({ createdAt: -1 });
 
     console.log("lateststt",latestAnalysis);
+
+    if(latestAnalysis){
+      APIERR = false;
+    }
 
  
     
