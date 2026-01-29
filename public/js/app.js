@@ -1,7 +1,17 @@
  document.addEventListener("click", (e) => {
   if (e.target.closest("[check-stats]")) reminder(e);
+
+  if(e.target.closest("[check-in]")) showCard(e);
 });
 
+
+function showCard(e){
+  const btn = e.target.closest("[check-in]");
+  if(!btn) return;
+
+  console.log("button dba hai")
+  
+}
  
 function reminder(e){
   const btn = e.target.closest("[check-stats]");
@@ -74,24 +84,24 @@ profileBtn.addEventListener("click", () => {
 
 //--------------------------- single page application code --------------------------------------------------------------------------
 
-function loadPage(page) {
-  showLoader();
-    fetch(`/components/${page}`)
-      .then(res => res.text())
-      .then(html => {
-        hideLoader();
-        document.getElementById("content").innerHTML = html;
-        initPage(page);
-      });
-  }
+// function loadPage(page) {
+//   showLoader();
+//     fetch(`/components/${page}`)
+//       .then(res => res.text())
+//       .then(html => {
+//         hideLoader();
+//         document.getElementById("content").innerHTML = html;
+//         initPage(page);
+//       });
+//   }
 
-  function initPage(p){
-     showLoader();
-    if(p == "home"){
-      funx();
-       hideLoader();
-    }
-}
+//   function initPage(p){
+//      showLoader();
+//     if(p == "home"){
+//       funx();
+//        hideLoader();
+//     }
+// }
 
 
 
@@ -116,11 +126,13 @@ document.addEventListener("DOMContentLoaded" , () => {
 
 
 function loadPage(page) {
+  showLoader();
   fetch(`/components/${page}`)
     .then(res => res.text())
     .then(html => {
       document.getElementById("content").innerHTML = html;
       initPage(page);
+      hideLoader()
     });
 }
 
