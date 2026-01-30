@@ -27,6 +27,7 @@ async function signup (req,res){
      return
     }
     
+    
 
     const hashPass = await middleware.hashing(password);
     

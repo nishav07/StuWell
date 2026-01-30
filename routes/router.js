@@ -8,6 +8,7 @@ const isLoggedIn = middleware.isLoggedIn;
 module.exports = router;
 
 
+
 router.get("/",userCall.index);
 router.get("/auth",authCall.auth);
 router.post("/signup",authCall.signup);

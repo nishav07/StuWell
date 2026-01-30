@@ -19,6 +19,7 @@ const weeklyAnalysisSchema = new mongoose.Schema({
     routineStability: String
   },
   
+  
   routineImpact: {
     shortTerm: String,
     longTerm: String,

@@ -382,6 +382,7 @@ const res =  await fetch("/update", {
     return console.error("Step element not found:", DcurrentStep);
   }
 
+  
   const el = stepEl.querySelector("input, select");
 
   if (!el) {

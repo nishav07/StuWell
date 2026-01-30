@@ -11,7 +11,6 @@ const inputSchema = new mongoose.Schema({
     junkFood: {
         type:String,
         enum:["yes","no"],
-     
     },
     foodType: {
         type:String,
